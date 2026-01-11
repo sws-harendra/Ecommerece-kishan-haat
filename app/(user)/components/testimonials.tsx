@@ -32,7 +32,7 @@ export default function TestimonialCarousel() {
       {/* Heading */}
       <div className="text-center mb-14">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900">
-          ⭐ What Our <span className="text-blue-600">Clients</span> Say
+          ⭐ What Our <span className="text-lime-600">Clients</span> Say
         </h2>
         <p className="mt-3 text-gray-600 text-base lg:text-lg">
           Real feedback from people who trusted us.
@@ -61,12 +61,12 @@ export default function TestimonialCarousel() {
                 <img
                   src={getImageUrl(t.image)}
                   alt={t.name}
-                  className="w-24 h-24 lg:w-28 lg:h-28 rounded-full object-cover border-4 border-indigo-100 mt-6 mb-4 shadow-md"
+                  className="w-24 h-24 lg:w-28 lg:h-28 rounded-full object-cover border-4 border-lime-100 mt-6 mb-4 shadow-md"
                 />
               )}
 
               {/* Quote icon */}
-              <Quote className="w-10 h-10 text-indigo-400 mb-4 opacity-60" />
+              <Quote className="w-10 h-10 text-lime-400 mb-4 opacity-60" />
 
               {/* Testimonial text */}
               <div className="px-6 pb-8 flex-1 flex items-center">
@@ -76,7 +76,7 @@ export default function TestimonialCarousel() {
               </div>
 
               {/* Divider */}
-              <div className="w-16 h-1 bg-indigo-500 rounded-full mb-4"></div>
+              <div className="w-16 h-1 bg-green-500 rounded-full mb-4"></div>
 
               {/* Client info */}
               <div className="text-center pb-6">

@@ -31,7 +31,7 @@ const AllArtistsHomePage = () => {
       {/* Header with centered title and right-side button */}
       <div className="relative mb-12">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 text-center">
-          ⭐ Our <span className="text-blue-600">Artists</span>
+          ⭐ Our <span className="text-lime-600">Artists</span>
         </h2>
         <p className="mt-4 text-gray-600 text-base lg:text-lg max-w-xl mx-auto text-center">
           Discover the creative minds shaping trends and stories in the art
@@ -41,7 +41,7 @@ const AllArtistsHomePage = () => {
         {/* View All Button */}
         <div className="absolute right-0 top-1/2 transform -translate-y-1/2 hidden lg:block">
           <Link href="/artists">
-            <button className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-white bg-blue-600 hover:bg-blue-700 font-medium shadow-md transition">
+            <button className="inline-flex items-center gap-2 px-6 py-2 rounded-full text-white bg-lime-600 hover:bg-lime-700 font-medium shadow-md transition">
               View All <ArrowRight size={18} />
             </button>
           </Link>
@@ -74,7 +74,7 @@ const AllArtistsHomePage = () => {
                   </div>
                 )}
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="mt-4 text-lg font-semibold text-gray-900 group-hover:text-lime-600 transition-colors">
                 {artist.name}
               </h3>
             </div>

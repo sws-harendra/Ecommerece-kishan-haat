@@ -100,7 +100,7 @@ export default function VideoProduct() {
   if (!videos.length)
     return (
       <div className="flex flex-col items-center justify-center pt-10">
-        <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center mb-4">
+        <div className="w-16 h-16 rounded-full bg-gradient-to-r from-green-700 via-green-600 to-lime-500 flex items-center justify-center mb-4">
           <Volume2 className="w-8 h-8 text-white" />
         </div>
         <p className="text-gray-600 text-lg font-medium">No videos available</p>
@@ -112,7 +112,7 @@ export default function VideoProduct() {
       {/* Header */}
       <div className="text-center mb-12">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 flex items-center justify-center gap-2">
-          Featured <span className="text-blue-600">Products</span>
+          Featured <span className="text-lime-600">Products</span>
         </h2>
         <p className="mt-3 text-gray-600">
           Discover amazing products through immersive video experiences
@@ -181,7 +181,7 @@ export default function VideoProduct() {
                   <div className="absolute top-4 right-4 flex gap-2 z-20">
                     <button
                       onClick={(e) => toggleMute(video.id, e)}
-                      className="bg-black bg-opacity-60 text-white p-2 rounded-full hover:bg-opacity-80 transition-all duration-200"
+                      className="bg-black bg-opacity-60 text-lime-500 p-2 rounded-full hover:bg-opacity-80 transition-all duration-200"
                     >
                       {unmutedId === video.id ? (
                         <Volume2 className="h-4 w-4" />
@@ -191,7 +191,7 @@ export default function VideoProduct() {
                     </button>
                     <button
                       onClick={(e) => togglePlayPause(video.id, e)}
-                      className="bg-black bg-opacity-60 text-white p-2 rounded-full hover:bg-opacity-80 transition-all duration-200"
+                      className="bg-black bg-opacity-60 text-lime-500 p-2 rounded-full hover:bg-opacity-80 transition-all duration-200"
                     >
                       {isPlaying === video.id ? (
                         <Pause className="h-4 w-4" />
@@ -238,7 +238,7 @@ export default function VideoProduct() {
                           video.Product?.name || "product"
                         )}/${video.productId}`}
                         onClick={handleShopNowClick}
-                        className="bg-white text-black px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-sm hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        className="bg-gradient-to-r from-green-700 via-green-600 to-lime-500 hover:from-green-700 hover:via-green-700 hover:to-green-700 text-black px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-sm hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105"
                       >
                         Shop Now
                       </Link>

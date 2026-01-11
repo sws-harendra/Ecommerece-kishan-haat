@@ -42,7 +42,7 @@ export default function HomeSections() {
               <Heading title={section.title} />
             </div>
             <div
-              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-50 to-white p-6"
+              className="relative overflow-hidden rounded-3xl  p-6"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >

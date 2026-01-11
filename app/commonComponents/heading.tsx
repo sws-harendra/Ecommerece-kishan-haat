@@ -8,7 +8,7 @@ const eduCursive = Edu_NSW_ACT_Foundation({
 
 const Heading = ({ title }: { title: string }) => {
   return (
-    <div className={`text-xl font-bold ${eduCursive.className}`}>{title}</div>
+    <div className={`text-4xl font-extrabold text-center mt-15 py-10   ${eduCursive.className}`}>{title}</div>
   );
 };
 export default Heading;

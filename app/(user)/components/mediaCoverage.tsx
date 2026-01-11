@@ -42,7 +42,7 @@ const MediaCoveragePage = () => {
   };
 
   // 👉 If not loading and no coverages, show nothing
-  if (!isLoading && coverages.length === 0) {
+  if (!isLoading && coverages?.length === 0) {
     return null;
   }
 

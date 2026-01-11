@@ -9,7 +9,7 @@ const AboutUs = () => {
       {/* Section Header */}
       <div className="text-center mb-14">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900">
-          About <span className="text-blue-600">Us</span>
+          About <span className="text-lime-600">Us</span>
         </h2>
         <p className="mt-3 text-gray-600 text-base lg:text-lg">
           A little information about us.

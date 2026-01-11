@@ -55,7 +55,7 @@ export default function EcommerceNavbar() {
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-100">
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm py-2">
+      {/* <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm py-2">
         <div className=" mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <span className="flex items-center space-x-1">
@@ -67,17 +67,31 @@ export default function EcommerceNavbar() {
             <span>Help & Support</span>
           </div>
         </div>
+      </div> */}
+      <div className="bg-gradient-to-r from-green-700 via-green-600 to-lime-500 text-white text-sm py-2">
+        <div className="mx-auto px-4 flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <span className="flex items-center space-x-1">
+              <Zap className="w-4 h-4" />
+              <span>Free delivery on farm orders above ₹5000</span>
+            </span>
+          </div>
+          <div className="hidden md:flex items-center space-x-4">
+            <span>Farmer Support</span>
+          </div>
+        </div>
       </div>
 
+
       {/* Main Navbar */}
-      <div className=" mx-auto px-4">
+      <div className=" mx-auto px-4 drop-shadow-lg">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-8">
             <div className="flex-shrink-0">
               <Link href="/">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                  {brandName}
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-lime-500 bg-clip-text text-transparent">
+                  {/* {brandName} */} Kishan Haat
                 </h1>
               </Link>
             </div>
@@ -103,13 +117,13 @@ export default function EcommerceNavbar() {
                   }
                 }}
                 placeholder="Search for products, brands, categories..."
-                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-full focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
+                className="w-full pl-12 pr-4 py-3 border border-green-600 rounded-full focus:ring-2 focus:ring-lime-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
               />
 
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <button
                 onClick={handleSearch}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 text-sm font-medium"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-green-700 via-green-600 to-lime-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-200 text-sm font-medium"
               >
                 Search
               </button>
@@ -119,7 +133,7 @@ export default function EcommerceNavbar() {
           {/* Right Actions */}
           <div className="flex items-center space-x-6">
             {/* Mobile Search */}
-            <button className="md:hidden text-gray-600 hover:text-purple-600 transition-colors">
+            <button className="md:hidden text-gray-600 hover:text-lime-500 transition-colors">
               <Search className="w-6 h-6" />
             </button>
 
@@ -138,10 +152,10 @@ export default function EcommerceNavbar() {
             {/* Cart */}
             <div className="relative">
               <Link href={"/cart"}>
-                <button className="text-gray-600 hover:text-purple-600 transition-colors duration-200 group">
+                <button className="text-gray-600 hover:text-lime-500 transition-colors duration-200 group">
                   <ShoppingCart className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
                   {cartCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-bounce">
+                    <span className="absolute -top-2 -right-2 bg-gradient-to-r from-green-700 via-green-600 to-lime-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-bounce">
                       {cartCount}
                     </span>
                   )}
@@ -154,9 +168,9 @@ export default function EcommerceNavbar() {
               <div className="relative">
                 <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 transition-colors duration-200"
+                  className="flex items-center space-x-2 text-gray-600 hover:text-lime-500 transition-colors duration-200"
                 >
-                  <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-gradient-to-r from-green-700 via-green-600 to-lime-500 rounded-full flex items-center justify-center">
                     <User className="w-4 h-4 text-white" />
                   </div>
                   <span className="hidden lg:block font-medium">
@@ -174,28 +188,28 @@ export default function EcommerceNavbar() {
                   <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 py-2">
                     <a
                       href="#"
-                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-lime-500 transition-colors"
                     >
                       My Account
                     </a>
                     <Link
                       href="/orderhistory"
                       onClick={() => setIsProfileOpen(false)}
-                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-lime-500 transition-colors"
                     >
                       Order History
                     </Link>
                     <a
                       href="#"
                       onClick={() => setIsProfileOpen(false)}
-                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-lime-500 transition-colors"
                     >
                       Settings
                     </a>
                     <hr className="my-2" />
                     <button
                       onClick={() => dispatch(logout())}
-                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                      className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-lime-500 transition-colors"
                     >
                       Sign Out
                     </button>
@@ -206,7 +220,7 @@ export default function EcommerceNavbar() {
               <div>
                 {" "}
                 <Link href="/authentication/login">
-                  <button className="px-5 py-2 text-white bg-gradient-to-r from-purple-500 to-blue-500 rounded-full">
+                  <button className="px-5 py-2 text-white bg-gradient-to-r from-green-700 via-green-600 to-lime-500 rounded-full">
                     Login
                   </button>
                 </Link>
@@ -216,7 +230,7 @@ export default function EcommerceNavbar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden text-gray-600 hover:text-purple-600 transition-colors"
+              className="lg:hidden text-gray-600 hover:text-lime-500 transition-colors"
             >
               {isMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -247,7 +261,7 @@ export default function EcommerceNavbar() {
               <div key={category.id} className="space-y-2">
                 <Link
                   href={`/products?category=${category.id}`}
-                  className="flex items-center space-x-3 py-3 text-gray-700 hover:text-purple-600 transition-colors border-b border-gray-100"
+                  className="flex items-center space-x-3 py-3 text-gray-700 hover:text-lime-500 transition-colors border-b border-gray-100"
                 >
                   <span className="font-medium">{category.name}</span>
                 </Link>
@@ -258,7 +272,7 @@ export default function EcommerceNavbar() {
                       <Link
                         key={sub.id}
                         href={`/products?category=${sub.id}`}
-                        className="block text-gray-600 hover:text-purple-600"
+                        className="block text-gray-600 hover:text-lime-500"
                       >
                         {sub.name}
                       </Link>

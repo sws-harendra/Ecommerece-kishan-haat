@@ -16,17 +16,19 @@ const HomePage = () => {
   return (
     <div>
       <BannerCarousel />
-      <VideoProduct />
+      <div className="p-15 px-20">
+        <VideoProduct />
 
-      <TrendingProducts />
-      <AllSections />
-      <FeaturedArtists />
-      <TestimonialCarousel />
-      <AllBlogsHomePage />
-      <MediaCoveragePage />
-      <AllArtistsHomePage />
+        <TrendingProducts />
+        <AllSections />
+        <FeaturedArtists />
+        <TestimonialCarousel />
+        <AllBlogsHomePage />
+        <MediaCoveragePage />
+        <AllArtistsHomePage />
 
-      <AboutUs />
+        <AboutUs />
+      </div>
       {/* <ShopByCategory /> */}
     </div>
   );

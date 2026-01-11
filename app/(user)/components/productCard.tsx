@@ -39,18 +39,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <Link href={`/products/${slugify(name)}/${id}`}>
-      <div className="group relative bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200/50 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
+      <div className="group relative bg-white rounded-3xl shadow-sm border border-green-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200/50 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
         {/* Enhanced Discount Badge */}
         <div className="absolute top-4 left-4 z-20">
           <div className="relative">
-            <div className="bg-gradient-to-r from-red-500 via-red-600 to-pink-600 text-white px-3 py-1.5 rounded-2xl text-xs font-bold shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
+            <div className="bg-gradient-to-r from-lime-600 via-green-600 to-emerald-500 text-white px-3 py-1.5 rounded-2xl text-xs font-bold shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
               <span className="flex items-center gap-1">
                 <Zap size={10} className="text-yellow-300" />
                 {discount}% OFF
               </span>
             </div>
             {/* Glowing effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-red-600 to-pink-600 rounded-2xl blur-sm opacity-50 -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500 via-emerald-500 to-lime-400 rounded-2xl blur-sm opacity-50 -z-10" />
           </div>
         </div>
 
@@ -67,8 +67,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
             size={18}
             className={`transition-all duration-300 group-hover/heart:scale-110 ${
               isFavorite
-                ? "text-red-500 fill-red-500 drop-shadow-sm"
-                : "text-gray-400 group-hover/heart:text-red-400"
+                ? "text-lime-600 fill-lime-600 drop-shadow-sm"
+                : "text-gray-400 group-hover/heart:text-lime-600"
             }`}
           />
         </button>
@@ -96,7 +96,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <button className="bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl hover:bg-white hover:scale-110 transition-all duration-300 border border-gray-100/50 group/quick">
               <Eye
                 size={18}
-                className="text-gray-700 group-hover/quick:text-blue-600 transition-colors"
+                className="text-gray-700 group-hover/quick:text-lime-600 transition-colors"
               />
             </button>
             <button
@@ -114,7 +114,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   })
                 );
               }}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-2xl shadow-xl hover:from-blue-700 hover:to-blue-800 hover:scale-110 transition-all duration-300 group/add"
+              className="bg-gradient-to-r from-lime-600 to-lime-700 text-white p-3 rounded-2xl shadow-xl hover:from-lime-700 hover:to-lime-800 hover:scale-110 transition-all duration-300 group/add"
             >
               <ShoppingCart
                 size={18}
@@ -128,7 +128,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="p-5 space-y-4">
           {/* Product Name */}
           <div className="space-y-2">
-            <h3 className="text-gray-900 group-hover:text-blue-700 transition-colors duration-300 truncate text-base leading-snug tracking-tight">
+            <h3 className="text-gray-900 group-hover:text-lime-500 transition-colors duration-300 truncate text-base leading-snug tracking-tight">
               {name}
             </h3>
 
@@ -193,7 +193,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   })
                 );
               }}
-              className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-3 rounded-2xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
+              className="bg-gradient-to-r from-lime-500 to-lime-600 text-white p-3 rounded-2xl hover:from-lime-600 hover:to-lime-700 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
             >
               <ShoppingCart
                 size={18}

@@ -188,7 +188,7 @@ const CartPage = () => {
               <div className="animate-bounce">
                 <div className="relative mx-auto w-44 h-44 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center shadow-2xl border-8 border-white">
                   <ShoppingBag className="w-24 h-24 text-indigo-400" />
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-red-400 to-pink-400 rounded-full flex items-center justify-center animate-pulse">
+                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-lime-400 to-green-400 rounded-full flex items-center justify-center animate-pulse">
                     <span className="text-white text-xl font-bold">0</span>
                   </div>
                 </div>
@@ -198,7 +198,7 @@ const CartPage = () => {
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-8 animate-pulse">
+            <h1 className="text-5xl md:text-6xl font-black bg-gradient-to-r from-green-600 via-green-500 to-lime-600 bg-clip-text text-transparent mb-8 animate-pulse">
               Your Cart is Empty
             </h1>
 
@@ -210,8 +210,8 @@ const CartPage = () => {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
               <Link href="/">
-                <button className="group relative px-10 py-5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl font-bold text-lg shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <button className="group relative px-10 py-5 bg-gradient-to-r from-green-600  to-lime-600 text-white rounded-2xl font-bold text-lg shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="relative flex items-center">
                     <ArrowLeft className="w-5 h-5 mr-3 group-hover:-translate-x-2 transition-transform" />
                     Continue Shopping
@@ -287,7 +287,7 @@ const CartPage = () => {
                 </button>
               </Link>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-lime-600 bg-clip-text text-transparent">
                   Shopping Cart
                 </h1>
                 <p className="text-gray-600 text-sm font-medium">
@@ -499,7 +499,7 @@ const CartPage = () => {
           <div className="lg:col-span-1">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-6 sticky top-28">
               <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center mr-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-lime-500 to-green-500 rounded-lg flex items-center justify-center mr-3">
                   <CreditCard className="w-4 h-4 text-white" />
                 </div>
                 Order Summary
@@ -577,7 +577,7 @@ const CartPage = () => {
                 <button
                   // onClick={handleCheckout}
                   disabled={isCheckingOut || items.length === 0}
-                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mb-6"
+                  className="w-full bg-gradient-to-r from-green-600 to-lime-600 text-white py-4 rounded-xl font-bold text-lg hover:from-green-700 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mb-6"
                 >
                   {isCheckingOut ? (
                     <div className="flex items-center justify-center">

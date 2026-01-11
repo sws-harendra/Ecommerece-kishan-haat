@@ -72,7 +72,7 @@ const TrendingProducts = () => {
       {/* <Heading title="🔥 Trending Products" /> */}
       <div className="text-center mb-12">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 flex items-center justify-center gap-2">
-          🔥 Trending <span className="text-blue-600">Products</span>
+          🔥 Trending <span className="text-lime-600">Products</span>
         </h2>
         <p className="mt-3 text-gray-600">
           Discover best products that are trending right Now.
@@ -149,7 +149,7 @@ const TrendingProducts = () => {
                 onClick={() => setCurrentIndex(index * itemsPerPage)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   currentPage === index
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 scale-125"
+                    ? "bg-gradient-to-r from-green-700 via-green-600 to-lime-500 scale-125"
                     : "bg-gray-300 hover:bg-gray-400"
                 }`}
               />

@@ -35,7 +35,7 @@ const AllBlogsHomePage = () => {
       {/* Header */}
       <div className="relative mb-14">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 text-center">
-          ⭐ Latest <span className="text-blue-600">Blogs</span>
+          ⭐ Latest <span className="text-lime-600">Blogs</span>
         </h2>
         <p className="mt-3 text-gray-600 text-base lg:text-lg max-w-xl mx-auto text-center">
           Discover insights, stories, and trends shaping the creative world.
@@ -45,7 +45,7 @@ const AllBlogsHomePage = () => {
         <div className="absolute right-0 top-1/2 transform -translate-y-1/2 hidden lg:block">
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-1 px-5 py-2 rounded-full bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-1 px-5 py-2 rounded-full bg-lime-600 text-white font-semibold shadow-md hover:bg-lime-700 transition-colors"
           >
             View All <ArrowRight size={16} />
           </Link>
@@ -79,7 +79,7 @@ const AllBlogsHomePage = () => {
 
               {/* Content */}
               <div className="p-5 flex flex-col flex-grow">
-                <h3 className="text-lg font-semibold mb-2 line-clamp-2 text-gray-900 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-semibold mb-2 line-clamp-2 text-gray-900 group-hover:text-lime-600 transition-colors">
                   {post.title}
                 </h3>
                 {post.excerpt && (
@@ -89,7 +89,7 @@ const AllBlogsHomePage = () => {
                 )}
 
                 {/* CTA */}
-                <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-blue-600 group-hover:gap-2 transition-all">
+                <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium text-lime-600 group-hover:gap-2 transition-all">
                   Read More <ArrowRight size={14} />
                 </span>
               </div>
