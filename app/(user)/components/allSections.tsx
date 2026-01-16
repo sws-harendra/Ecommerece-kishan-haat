@@ -111,7 +111,7 @@ export default function HomeSections() {
                       onClick={() => setCurrentIndex(index * itemsPerPage)}
                       className={`w-3 h-3 rounded-full transition-all duration-300 ${
                         currentPage === index
-                          ? "bg-gradient-to-r from-blue-600 to-purple-600 scale-125"
+                          ? "bg-gradient-to-r from-green-600 to-lime-600 scale-125"
                           : "bg-gray-300 hover:bg-gray-400"
                       }`}
                     />

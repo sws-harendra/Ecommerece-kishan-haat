@@ -61,7 +61,7 @@ export default function BlogList() {
               <div className="p-6 flex flex-col flex-1 justify-between">
                 <div>
                   <Link href={`/admin/dashboard/blogs/${post.slug}`}>
-                    <h2 className="text-xl font-semibold text-gray-800 hover:text-blue-600 hover:underline transition">
+                    <h2 className="text-xl font-semibold text-gray-800 hover:text-green-600 hover:underline transition">
                       {post.title}
                     </h2>
                   </Link>
@@ -74,7 +74,7 @@ export default function BlogList() {
 
                 {/* <div className="mt-4 flex justify-between items-center">
                 <Link href={`/blogs/${post.id}/${post.slug}`}>
-                  <button className="text-blue-600 border border-blue-600 px-3 py-1 rounded hover:bg-blue-50 transition">
+                  <button className="text-green-600 border border-green-600 px-3 py-1 rounded hover:bg-green-50 transition">
                     View
                   </button>
                 </Link>

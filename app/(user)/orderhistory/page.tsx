@@ -86,7 +86,7 @@ const OrderHistoryPage = () => {
       case "delivered":
         return <CheckCircle className="w-5 h-5 text-green-500" />;
       case "shipped":
-        return <Truck className="w-5 h-5 text-blue-500" />;
+        return <Truck className="w-5 h-5 text-green-500" />;
       case "confirmed":
         return <Clock className="w-5 h-5 text-orange-500" />;
       default:
@@ -103,7 +103,7 @@ const OrderHistoryPage = () => {
       case "delivered":
         return "bg-green-100 text-green-800 border-green-200";
       case "shipped":
-        return "bg-blue-100 text-blue-800 border-blue-200";
+        return "bg-green-100 text-green-800 border-green-200";
       case "confirmed":
         return "bg-orange-100 text-orange-800 border-orange-200";
       default:
@@ -150,9 +150,9 @@ const OrderHistoryPage = () => {
   // Loading state
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-50 to-lime-100 flex items-center justify-center">
         <div className="text-center">
-          <Loader className="w-12 h-12 text-purple-600 animate-spin mx-auto mb-4" />
+          <Loader className="w-12 h-12 text-green-600 animate-spin mx-auto mb-4" />
           <p className="text-gray-600">Loading your orders...</p>
         </div>
       </div>
@@ -162,7 +162,7 @@ const OrderHistoryPage = () => {
   // Error state
   if (status === "failed") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-50 to-lime-100 flex items-center justify-center">
         <div className="text-center bg-white rounded-2xl shadow-lg p-8 max-w-md">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <X className="w-8 h-8 text-red-500" />
@@ -173,7 +173,7 @@ const OrderHistoryPage = () => {
           <p className="text-red-600 mb-4">{error || "Something went wrong"}</p>
           <button
             onClick={() => dispatch(fetchUserOrders())}
-            className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+            className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-600 hover:scale-105 transition-all duration-300"
           >
             Retry
           </button>
@@ -185,9 +185,9 @@ const OrderHistoryPage = () => {
   // Wait for orders to be properly loaded
   if (!orders) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-50 to-lime-100 flex items-center justify-center">
         <div className="text-center">
-          <Loader className="w-12 h-12 text-purple-600 animate-spin mx-auto mb-4" />
+          <Loader className="w-12 h-12 text-green-700 animate-spin mx-auto mb-4" />
           <p className="text-gray-600">Initializing...</p>
         </div>
       </div>
@@ -195,16 +195,16 @@ const OrderHistoryPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-50 to-lime-100">
       {/* Header */}
       <div className="bg-white shadow-lg border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex items-center space-x-3">
-            <div className="p-3 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl shadow-lg">
+            <div className="p-3 bg-gradient-to-r from-green-600 to-lime-600 rounded-xl shadow-lg">
               <Package className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-green-700 bg-clip-text text-transparent">
                 Order History
               </h1>
               <p className="text-gray-600 mt-1">Track and manage your orders</p>
@@ -292,7 +292,7 @@ const OrderHistoryPage = () => {
                       <div className="flex items-center space-x-4">
                         <button
                           onClick={() => handleViewDetails(order.id)}
-                          className="group/btn flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-medium hover:from-purple-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+                          className="group/btn flex items-center space-x-2 bg-gradient-to-r from-green-500 to-lime-600 text-white px-6 py-3 rounded-xl font-medium hover:from-green-600 hover:to-lime-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
                         >
                           <Eye className="w-4 h-4 group-hover/btn:rotate-12 transition-transform duration-200" />
                           <span>View Details</span>
@@ -384,7 +384,7 @@ const OrderHistoryPage = () => {
               <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
               <div className="bg-white rounded-2xl shadow-2xl p-8 relative z-10">
                 <div className="flex items-center justify-center">
-                  <Loader className="w-8 h-8 text-purple-600 animate-spin mr-3" />
+                  <Loader className="w-8 h-8 text-green-600 animate-spin mr-3" />
                   <span>Loading order details...</span>
                 </div>
               </div>
@@ -408,7 +408,7 @@ const OrderHistoryPage = () => {
                   }`}
                 >
                   {/* Modal Header */}
-                  <div className="bg-gradient-to-r from-purple-500 to-indigo-600 p-6 text-white relative">
+                  <div className="bg-gradient-to-r from-green-500 to-lime-600 p-6 text-white relative">
                     <button
                       onClick={handleCloseDetails}
                       className="absolute top-4 right-4 p-2 hover:bg-white hover:bg-opacity-20 rounded-full transition-all duration-200"
@@ -507,7 +507,7 @@ const OrderHistoryPage = () => {
                                       "N/A"}
                                   </p>
                                   {selectedOrder.OrderAddress.addressType && (
-                                    <p className="text-xs text-blue-600 font-medium capitalize">
+                                    <p className="text-xs text-green-600 font-medium capitalize">
                                       {selectedOrder.OrderAddress.addressType}{" "}
                                       Address
                                     </p>

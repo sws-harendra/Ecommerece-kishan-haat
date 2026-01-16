@@ -239,7 +239,7 @@ export default function ProductDetailPage() {
               </button>
               <button
                 onClick={handleUpdateVariant}
-                className="px-3 py-1 bg-blue-600 text-white rounded"
+                className="px-3 py-1 bg-green-600 text-white rounded"
               >
                 Save
               </button>

@@ -57,7 +57,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       >
         {/* Discount Badge */}
         {discountPercent > 0 && (
-          <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-red-500 to-pink-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow-md">
+          <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-green-700 via-green-600 to-lime-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow-md">
             {discountPercent}% OFF
           </div>
         )}
@@ -112,7 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <Eye size={16} className="text-gray-700" />
             </button>
             <button
-              className={`bg-blue-600 text-white p-2 rounded-full shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-200 flex items-center justify-center ${
+              className={`bg-green-600 text-white p-2 rounded-full shadow-md hover:bg-green-700 hover:scale-105 transition-all duration-200 flex items-center justify-center ${
                 product.sold_out === 1 ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={product.sold_out === 1}
@@ -127,13 +127,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
           className={`${viewMode === "list" ? "flex-1 py-2" : "p-4 space-y-3"}`}
         >
           {/* Category Badge */}
-          <span className="inline-block px-2 py-1 text-xs font-medium text-blue-600 bg-blue-50 rounded-full capitalize mb-2">
+          <span className="inline-block px-2 py-1 text-xs font-medium text-green-600 bg-green-50 rounded-full capitalize mb-2">
             {product.Category?.name || "General"}
           </span>
 
           {/* Product Name */}
           <h3
-            className={`font-medium text-gray-800 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2 ${
+            className={`font-medium text-gray-800 group-hover:text-green-600 transition-colors duration-300 line-clamp-2 ${
               viewMode === "list" ? "text-lg" : "text-sm leading-tight"
             }`}
           >
@@ -192,7 +192,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               className={`p-2 rounded-lg transition-colors duration-200 group/cart ${
                 product.sold_out === 1
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-blue-100 text-blue-600 hover:bg-blue-200"
+                  : "bg-green-100 text-green-600 hover:bg-green-200"
               }`}
               disabled={product.sold_out === 1}
             >
@@ -300,9 +300,9 @@ const FilterSidebar = ({
                       value={cat.name.toLowerCase()}
                       checked={category === cat.name.toLowerCase()}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                      className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
                     />
-                    <span className="ml-3 text-gray-700 group-hover:text-blue-600 transition-colors">
+                    <span className="ml-3 text-gray-700 group-hover:text-green-600 transition-colors">
                       {cat.name}
                     </span>
                   </label>
@@ -366,7 +366,7 @@ const FilterSidebar = ({
                     value={stars}
                     checked={rating === stars}
                     onChange={(e) => setRating(parseInt(e.target.value))}
-                    className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
                   />
                   <div className="ml-3 flex items-center">
                     {Array.from({ length: 5 }, (_, i) => (
@@ -379,7 +379,7 @@ const FilterSidebar = ({
                         }`}
                       />
                     ))}
-                    <span className="ml-2 text-gray-700 group-hover:text-blue-600 transition-colors">
+                    <span className="ml-2 text-gray-700 group-hover:text-green-600 transition-colors">
                       & up
                     </span>
                   </div>
@@ -394,7 +394,7 @@ const FilterSidebar = ({
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
             >
               <option value="">Default</option>
               <option value="price-low">Price: Low to High</option>
@@ -604,7 +604,7 @@ function AllProducts() {
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => setFilterOpen(true)}
-                  className="lg:hidden flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="lg:hidden flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
                 >
                   <Filter className="w-4 h-4" />
                   Filters
@@ -628,7 +628,7 @@ function AllProducts() {
                       }
                     }}
                     placeholder="Search products..."
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300"
                   />
                 </div>
               </div>
@@ -637,7 +637,7 @@ function AllProducts() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                  className="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-sm"
                 >
                   <option value="">Sort by</option>
                   <option value="price-low">Price: Low to High</option>
@@ -652,7 +652,7 @@ function AllProducts() {
                     onClick={() => setViewMode("grid")}
                     className={`p-2 rounded-md transition-all duration-200 ${
                       viewMode === "grid"
-                        ? "bg-white shadow-sm text-blue-600"
+                        ? "bg-white shadow-sm text-green-600"
                         : "text-gray-500 hover:text-gray-700"
                     }`}
                   >
@@ -662,7 +662,7 @@ function AllProducts() {
                     onClick={() => setViewMode("list")}
                     className={`p-2 rounded-md transition-all duration-200 ${
                       viewMode === "list"
-                        ? "bg-white shadow-sm text-blue-600"
+                        ? "bg-white shadow-sm text-green-600"
                         : "text-gray-500 hover:text-gray-700"
                     }`}
                   >
@@ -676,7 +676,7 @@ function AllProducts() {
             {isLoading ? (
               <div className="flex items-center justify-center py-12">
                 <div className="text-center">
-                  <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                  <div className="w-12 h-12 border-4 border-green-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
                   <p className="text-gray-600">Loading amazing products...</p>
                 </div>
               </div>
@@ -725,7 +725,7 @@ function AllProducts() {
                     setRating(0);
                     setSortBy("");
                   }}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
                 >
                   Clear Filters
                 </button>
@@ -763,7 +763,7 @@ function AllProducts() {
                         onClick={() => setPage(pageNum)}
                         className={`w-10 h-10 rounded-lg font-medium transition-all duration-200 ${
                           page === pageNum
-                            ? "bg-blue-600 text-white shadow-md"
+                            ? "bg-green-600 text-white shadow-md"
                             : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                         }`}
                       >
