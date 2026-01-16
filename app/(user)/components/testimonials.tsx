@@ -55,13 +55,13 @@ export default function TestimonialCarousel() {
       >
         {testimonials.map((t) => (
           <SwiperSlide key={t.id}>
-            <div className="bg-white mb-4 rounded-2xl shadow-lg h-full flex flex-col items-center relative overflow-hidden group transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <div className="bg-[#f1f6ee] mb-4 rounded-2xl shadow-xl h-full flex flex-col items-center relative overflow-hidden group transition-transform hover:-translate-y-2 hover:shadow-xl">
               {/* Image */}
               {t.image && (
                 <img
                   src={getImageUrl(t.image)}
                   alt={t.name}
-                  className="w-24 h-24 lg:w-28 lg:h-28 rounded-full object-cover border-4 border-lime-100 mt-6 mb-4 shadow-md"
+                  className="w-34 h-34 lg:w-28 lg:h-28 rounded-full object-cover border-4 border-lime-100 mt-6 mb-4 shadow-md"
                 />
               )}
 

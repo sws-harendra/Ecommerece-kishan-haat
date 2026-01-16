@@ -6,6 +6,8 @@ import { slugify } from "@/app/utils/slugify";
 import { useAppDispatch } from "@/app/lib/store/store";
 import { addToCart } from "@/app/lib/store/features/cartSlice";
 import { getImageUrl } from "@/app/utils/getImageUrl";
+import { Cagliostro } from "next/font/google";
+import { json } from "stream/consumers";
 
 interface ProductCardProps {
   id: number;
@@ -19,6 +21,22 @@ interface ProductCardProps {
   onToggleFavorite?: (id: number) => void;
   paymentMethods: string;
 }
+
+// const cartCount = JSON.parse(localStorage.getItem("cart"))
+
+// let ProductsInCart =[]
+// let productQuantity
+
+// cartCount?.forEach((element) => {
+//   ProductsInCart.push(element.id)
+// })
+
+// console.log(cartCount?.forEach((element) => {
+//   if (element.id == 2){
+//     productQuantity= element.quantity
+    
+//   }
+// }))
 
 const ProductCard: React.FC<ProductCardProps> = ({
   id,
@@ -37,13 +55,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
     parseFloat(originalPrice) - parseFloat(price)
   ).toFixed(0);
 
+
   return (
     <Link href={`/products/${slugify(name)}/${id}`}>
       <div className="group relative bg-white rounded-3xl shadow-sm border border-green-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200/50 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
         {/* Enhanced Discount Badge */}
         <div className="absolute top-4 left-4 z-20">
           <div className="relative">
-            <div className="bg-gradient-to-r from-lime-600 via-green-600 to-emerald-500 text-white px-3 py-1.5 rounded-2xl text-xs font-bold shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
+            <div className="bg-green-900 text-white px-3 py-1.5 rounded-2xl text-xs font-bold shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
               <span className="flex items-center gap-1">
                 <Zap size={10} className="text-yellow-300" />
                 {discount}% OFF
@@ -114,7 +133,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   })
                 );
               }}
-              className="bg-gradient-to-r from-lime-600 to-lime-700 text-white p-3 rounded-2xl shadow-xl hover:from-lime-700 hover:to-lime-800 hover:scale-110 transition-all duration-300 group/add"
+              className="bg-green-700 text-white p-3 rounded-2xl shadow-xl hover:bg-green-800 hover:scale-110 transition-all duration-300 group/add"
             >
               <ShoppingCart
                 size={18}
@@ -128,7 +147,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="p-5 space-y-4">
           {/* Product Name */}
           <div className="space-y-2">
-            <h3 className="text-gray-900 group-hover:text-lime-500 transition-colors duration-300 truncate text-base leading-snug tracking-tight">
+            <h3 className="text-gray-900 group-hover:text-green-900 transition-colors duration-300 truncate text-base leading-snug tracking-tight">
               {name}
             </h3>
 
@@ -193,12 +212,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   })
                 );
               }}
-              className="bg-gradient-to-r from-lime-500 to-lime-600 text-white p-3 rounded-2xl hover:from-lime-600 hover:to-lime-700 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
+              className="bg-green-700 text-white p-3 rounded-2xl hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
             >
               <ShoppingCart
                 size={18}
-                className="group-hover/cart:rotate-12 transition-transform duration-300"
+                className="relative group-hover/cart:rotate-12 transition-transform duration-300"
               />
+              
             </button>
           </div>
 

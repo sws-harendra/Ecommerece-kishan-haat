@@ -31,7 +31,7 @@ const AllBlogsHomePage = () => {
   if (!posts || posts.length === 0) return null;
 
   return (
-    <section className="px-6 md:px-12 py-6 bg-gradient-to-b from-gray-50 to-white">
+    <section className=" px-6 md:px-12 py-6 bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
       <div className="relative mb-14">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 text-center">

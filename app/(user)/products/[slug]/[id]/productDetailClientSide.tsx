@@ -97,7 +97,7 @@ export default function ProductDetailClient({
   };
 
   return (
-    <div className="min-h-screen pb-10 bg-gradient-to-br from-slate-50 via-gray-200 to-blue-50">
+    <div className="min-h-screen pb-10 bg-gradient-to-br from-slate-50 via-gray-200 to-green-50">
       {/* Animated Background Elements */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-4">
@@ -106,21 +106,21 @@ export default function ProductDetailClient({
           <nav className="flex items-center space-x-2 text-sm text-gray-500">
             <Link
               href={"/"}
-              className="hover:text-blue-600 cursor-pointer transition-colors"
+              className="hover:text-green-600 cursor-pointer transition-colors"
             >
               <Heading title="Home" />
             </Link>
             <Heading title="/" />
             <Link
               href={"/products"}
-              className="hover:text-blue-600 cursor-pointer transition-colors"
+              className="hover:text-green-600 cursor-pointer transition-colors"
             >
               <Heading title="Products" />
             </Link>{" "}
             <Heading title="/" />
             <Link
               href={`/products?search=${product?.categoryId}`}
-              className="hover:text-blue-600 cursor-pointer transition-colors"
+              className="hover:text-green-600 cursor-pointer transition-colors"
             >
               <Heading title={product?.Category?.name} />
             </Link>
@@ -211,7 +211,7 @@ export default function ProductDetailClient({
               )}
               {/* Floating Discount Badge */}
               <div className="absolute top-4 right-4 transform rotate-12">
-                <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
+                <div className="bg-gradient-to-r from-lime-600 via-green-600 to-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
                   {discountPercentage(
                     parseFloat(product.originalPrice),
                     parseFloat(product.discountPrice)
@@ -232,7 +232,7 @@ export default function ProductDetailClient({
                     <div
                       key={index}
                       className={`group aspect-square relative overflow-hidden rounded-xl bg-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in-up ${
-                        selectedImage === index ? "ring-2 ring-blue-500" : ""
+                        selectedImage === index ? "ring-2 ring-green-500" : ""
                       }`}
                       style={{ animationDelay: `${index * 100}ms` }}
                       onClick={() => setSelectedImage(index)}
@@ -269,8 +269,8 @@ export default function ProductDetailClient({
           <div className="space-y-5 animate-fade-in-right">
             {/* Header */}
             <div className="space-y-4">
-              <div className=" flex flex-row justify-between">
-                <span className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">
+              <div className=" flex flex-row justify-between ">
+                <span className=" bg-gradient-to-r from-green-100 to-lime-100 text-green-800 text-sm font-semibold px-3 py-2 rounded-full">
                   {product.Category?.name || "Uncategorized"}
                 </span>
                 <div className="relative inline-block">
@@ -401,7 +401,7 @@ export default function ProductDetailClient({
                   );
                   router.push("/cart");
                 }}
-                className="w-full group relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
+                className="w-full group relative bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-600 hover:to-green-600 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
               >
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
                 <div className="relative flex items-center justify-center space-x-2">
@@ -433,7 +433,7 @@ export default function ProductDetailClient({
                     })
                   );
                 }}
-                className="w-full group bg-white/80 backdrop-blur-sm hover:bg-white border-2 border-gray-200 hover:border-pink-300 text-gray-700 hover:text-pink-600 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                className="w-full group bg-white/80 backdrop-blur-sm hover:bg-white border-2 border-gray-200 hover:border-green-300 text-gray-700 hover:text-green-600 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
               >
                 <div className="flex items-center justify-center space-x-2">
                   <ShoppingCart /> <span>Add to cart</span>
@@ -454,17 +454,17 @@ export default function ProductDetailClient({
                       onClick={() => handleVariantClick(variant)}
                       className={`p-3 rounded-xl border flex flex-col items-center ${
                         selectedVariant?.id === variant.id
-                          ? "bg-blue-100 text-blue-800 border-blue-600 ring-2 ring-blue-500"
-                          : "bg-white border-gray-300 text-gray-700 hover:border-blue-400"
+                          ? "bg-green-100 text-green-800 border-green-600 ring-2 ring-green-500"
+                          : "bg-white border-gray-300 text-gray-700 hover:border-green-400"
                       }`}
                     >
                       {/* Variant image if available */}
                       {variant.image && (
                         <div className="relative w-16 h-16 mb-2 rounded-md overflow-hidden">
-                          <Image
+                          <img
                             src={getImageUrl(variant.image)}
                             alt="Variant"
-                            fill
+                            
                             className="object-cover"
                           />
                         </div>
