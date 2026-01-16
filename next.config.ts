@@ -20,10 +20,10 @@ const nextConfig: NextConfig = {
         protocol: "http",
         hostname: "localhost",
       },
-      {
-        protocol: "https",
-        hostname: "api.heritagehand.in",
-      },
+      // {
+      //   protocol: "https",
+      //   hostname: "api.kishanhaat.in",
+      // },
     ],
   },
 };

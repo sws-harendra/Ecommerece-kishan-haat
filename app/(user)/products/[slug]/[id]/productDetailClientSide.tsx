@@ -33,6 +33,7 @@ import {
 import { slugify } from "@/app/utils/slugify";
 import { toast } from "sonner";
 import { getFileType } from "@/app/utils/getMediaType";
+import { clienturl } from "@/app/contants";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -79,7 +80,7 @@ export default function ProductDetailClient({
       ? [selectedVariant.image] // Convert single image to array
       : product.images;
 
-  const shareUrl = `http://heritagehand.in/products/${slugify(product.name)}/${
+  const shareUrl = `${clienturl}/products/${slugify(product.name)}/${
     product.id
   }`; // dynamic link here
   const title = "Check out this product!";

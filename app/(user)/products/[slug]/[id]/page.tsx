@@ -19,7 +19,6 @@ async function getProduct(id: string): Promise<Product | null> {
   try {
     console.log("Fetching product with ID:", id);
     const response = await productService.getProductById(id);
-    console.log("API Response:", response);
 
     if (response && response.product) {
       console.log("Product found:", response.product.name);
