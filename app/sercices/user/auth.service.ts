@@ -119,5 +119,11 @@ export const authService = {
     });
     return response.data; // { success, totalUsers, currentPage, totalPages, users }
   },
-
+  registerUseradmin: async (userData: FormData) => {
+    const response = await axiosInstance.post(
+      "/user/admin-create-user",
+      userData
+    );
+    return response.data;
+  }
 };

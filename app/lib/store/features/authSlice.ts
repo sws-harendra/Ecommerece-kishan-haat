@@ -21,6 +21,19 @@ export const registerUser = createAsyncThunk(
     }
   }
 );
+export const registerUserbyAdmin = createAsyncThunk(
+  "auth/register/admin",
+  async (userData: any, { rejectWithValue }) => {
+    try {
+      return await authService.registerUseradmin(userData);
+    } catch (err: any) {
+      return rejectWithValue(
+        err.response?.data?.message || "Registration failed"
+      );
+    }
+  }
+);
+
 
 export const emailLogin = createAsyncThunk(
   "auth/emailLogin",
@@ -404,7 +417,18 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-      
+        .addCase(registerUserbyAdmin.pending, (state) => {
+        state.registerStatus = "loading";
+      })
+      .addCase(registerUserbyAdmin.fulfilled, (state, action) => {
+        // state.user = action.payload;
+        state.registerStatus = "succeeded";
+      })
+      .addCase(registerUserbyAdmin.rejected, (state, action) => {
+        state.registerStatus = "failed";
+        state.error = action.payload;
+
+       });
 
      
   },
