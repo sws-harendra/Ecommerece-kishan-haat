@@ -6,7 +6,7 @@ import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className=" bg-green-800 text-green-50 ">
+    <footer className=" bg-green-700 text-green-50 ">
       
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
 
@@ -79,6 +79,7 @@ export default function Footer() {
       <div className="border-t border-green-700 py-4 text-center text-sm text-green-200">
         © {new Date().getFullYear()}{" "}
         <span className="font-semibold text-lime-300">{brandName}</span>. All rights reserved.
+        <span className="font-bold"> Design by Startup Web Support</span>
       </div>
     </footer>
   );

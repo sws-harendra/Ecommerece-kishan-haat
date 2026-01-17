@@ -26,7 +26,7 @@ export default function TestimonialCarousel() {
   if (testimonials.length === 0) {
     return <p className="text-center">No testimonials available</p>;
   }
-
+// const testimonials = [...data, ...data, ...data, ...data,...data,...data, ...data, ...data, ...data,...data];
   return (
     <div className="overflow-x-hidden mx-auto py-16 px-6 lg:px-20 bg-gray-50">
       {/* Heading */}
@@ -51,19 +51,23 @@ export default function TestimonialCarousel() {
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
         }}
-        className="pb-14"
+        className="pb-14 min-h-[560px]"
       >
         {testimonials.map((t) => (
           <SwiperSlide key={t.id}>
-            <div className="bg-[#f1f6ee] mb-4 rounded-2xl shadow-xl h-full flex flex-col items-center relative overflow-hidden group transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <div className="bg-[#f1f6ee] mb-4 rounded-2xl shadow-xl h-[420px] flex flex-col items-center relative overflow-hidden group transition-transform hover:-translate-y-2 hover:shadow-xl">
               {/* Image */}
-              {t.image && (
+              {t.image? (
                 <img
                   src={getImageUrl(t.image)}
                   alt={t.name}
                   className="w-34 h-34 lg:w-28 lg:h-28 rounded-full object-cover border-4 border-lime-100 mt-6 mb-4 shadow-md"
                 />
-              )}
+              ): <img
+                  src="blankProfilePicture.png"
+                  alt={"t.name"}
+                  className="w-34 h-34 lg:w-28 lg:h-28 rounded-full object-cover border-4 border-lime-100 mt-6 mb-4 shadow-md"
+                />}
 
               {/* Quote icon */}
               <Quote className="w-10 h-10 text-lime-400 mb-4 opacity-60" />
@@ -72,7 +76,7 @@ export default function TestimonialCarousel() {
               <div className="px-6 pb-8 flex-1 flex items-center">
                 <p className="text-gray-600 italic text-center text-sm md:text-base line-clamp-1 group-hover:line-clamp-none group-hover:animate-slideUp transition-all duration-300">
                   “{t.message}”
-                </p>
+                  </p>
               </div>
 
               {/* Divider */}
