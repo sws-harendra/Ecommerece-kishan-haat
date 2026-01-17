@@ -41,7 +41,7 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
