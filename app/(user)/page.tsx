@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <div>
       <BannerCarousel />
-      <div className="p-15 px-20">
+      <div className=" lg:px-20">
         <VideoProduct />
 
         <TrendingProducts />

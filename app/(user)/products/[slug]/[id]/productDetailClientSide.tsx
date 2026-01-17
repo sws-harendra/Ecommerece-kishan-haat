@@ -103,7 +103,7 @@ export default function ProductDetailClient({
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-4">
         {/* Breadcrumb with Animation */}
         <div className="mb-8 animate-fade-in-up">
-          <nav className="flex items-center space-x-2 text-sm text-gray-500">
+          <nav className="flex flex-wrap items-center space-x-1 text-[4px] sm:text-[8px] text-gray-500">
             <Link
               href={"/"}
               className="hover:text-green-600 cursor-pointer transition-colors"
@@ -130,6 +130,7 @@ export default function ProductDetailClient({
             </span>
           </nav>
         </div>
+        
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Product Images Section */}

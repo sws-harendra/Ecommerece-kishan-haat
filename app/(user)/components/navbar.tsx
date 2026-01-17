@@ -84,10 +84,10 @@ export default function EcommerceNavbar() {
 
 
       {/* Main Navbar */}
-      <div className=" mx-auto px-4 drop-shadow-lg">
+      <div className=" mx-auto px-2 md:px-4 drop-shadow-lg">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-1 md:space-x-8">
             <div className="flex-shrink-0">
               <Link href="/">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-lime-500 bg-clip-text text-transparent">
