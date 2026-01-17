@@ -22,6 +22,12 @@ export const orderService = {
     return response.data;
   },
 
+  getOrderForRider: async () => {
+    const response = await axiosInstance.get("/order/driver/my-orders"); // make sure backend route matches
+    return response.data;
+  },
+
+
   getOrderById: async (orderId: string) => {
     const response = await axiosInstance.get(`/order/${orderId}`);
     return response.data;

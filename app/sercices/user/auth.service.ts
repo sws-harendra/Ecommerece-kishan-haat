@@ -110,4 +110,14 @@ export const authService = {
     const response = await axiosInstance.delete(`/user/delete-user/${id}`);
     return response.data; // { success, totalUsers, currentPage, totalPages, users }
   },
+
+  getAllDrivers: async (params: {
+    search?: string;
+  }) => {
+    const response = await axiosInstance.get("/driver/admin-all-drivers", {
+      params,
+    });
+    return response.data; // { success, totalUsers, currentPage, totalPages, users }
+  },
+
 };

@@ -29,9 +29,10 @@ export interface AuthState {
   phoneNumber: string;
   otpSent: boolean;
   registerStatus?: "idle" | "loading" | "succeeded" | "failed";
-  role: "user" | "admin";
+  role: "user" | "admin" | "driver" ;
   addressStatus?: "idle" | "loading" | "succeeded" | "failed";
   addressError?: string | null;
+  allDrivers: User[];
 }
 
 // Response DTOs
@@ -52,7 +53,7 @@ export interface User {
   id: string;
   email: string;
   fullname: string;
-  role: "user" | "admin";
+  role: "user" | "admin" | "driver";
   phoneNumber?: string;
   avatar?: string;
   createdAt?: string;

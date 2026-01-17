@@ -29,7 +29,7 @@ import DropdownCategory from "@/app/commonComponents/renderCategory";
 export default function EcommerceNavbar() {
   const dispatch = useAppDispatch(); // ✅ typed dispatch
   const { isAuthenticated, user, status } = useAppSelector(
-    (state: RootState) => state.auth // ✅ typed state
+    (state: RootState) => state.auth, // ✅ typed state
   );
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -81,7 +81,6 @@ export default function EcommerceNavbar() {
           </div>
         </div>
       </div>
-
 
       {/* Main Navbar */}
       <div className=" mx-auto px-2 md:px-4 drop-shadow-lg">
@@ -199,13 +198,23 @@ export default function EcommerceNavbar() {
                     >
                       Order History
                     </Link>
-                    <a
+
+                    {user?.role == "driver" && (
+                      <Link
+                        href="/orderhistory/rider"
+                        onClick={() => setIsProfileOpen(false)}
+                        className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-lime-500 transition-colors"
+                      >
+                        Order for you (Rider)
+                      </Link>
+                    )}
+                    {/* <a
                       href="#"
                       onClick={() => setIsProfileOpen(false)}
                       className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-lime-500 transition-colors"
                     >
                       Settings
-                    </a>
+                    </a> */}
                     <hr className="my-2" />
                     <button
                       onClick={() => dispatch(logout())}

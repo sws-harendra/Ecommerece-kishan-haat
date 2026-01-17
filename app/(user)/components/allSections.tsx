@@ -38,8 +38,9 @@ export default function HomeSections() {
         return (
           <div key={section.id} className="relative">
             {/* Section Heading */}
-            <div className=" relative">
+            <div className="text-center relative">
               <Heading title={section.title} />
+              <p>{section.description}</p>
             </div>
             <div
               className="relative overflow-hidden rounded-3xl  p-6"

@@ -2,13 +2,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, Save, ArrowLeft } from "lucide-react";
+import { X, Save, ArrowLeft, Search, Trash2, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store/store";
 import {
   fetchOrderById,
   updateOrder,
 } from "@/app/lib/store/features/orderSlice";
+import { getAllDriversforAdmin } from "@/app/lib/store/features/authSlice";
 
 interface EditOrderProps {
   orderId: string;
@@ -20,19 +21,28 @@ const EditOrder: React.FC<EditOrderProps> = ({ orderId, onClose }) => {
   const router = useRouter();
 
   const { currentOrder, status, error } = useAppSelector(
-    (state) => state.order
+    (state) => state.order,
   );
-
+  const { allDrivers } = useAppSelector((state) => state.auth);
   const [formData, setFormData] = useState({
     status: "",
     paymentStatus: "",
     paymentMethod: "",
+    driverId: "",
     totalAmount: 0,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [updateError, setUpdateError] = useState("");
   const loading = status === "loading";
+  const [selectedDriver, setSelectedDriver] = useState<any>();
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      dispatch(getAllDriversforAdmin({ search }));
+    }, 400);
+    return () => clearTimeout(delayDebounce);
+  }, [search, dispatch]);
 
   useEffect(() => {
     if (orderId) {
@@ -46,13 +56,18 @@ const EditOrder: React.FC<EditOrderProps> = ({ orderId, onClose }) => {
         status: currentOrder.status || "",
         paymentStatus: currentOrder.paymentStatus || "",
         paymentMethod: currentOrder.paymentMethod || "",
+        driverId: currentOrder.driverId || "",
         totalAmount: currentOrder.totalAmount || 0,
       });
+      setSelectedDriver(currentOrder.driverId || null);
     }
   }, [currentOrder, orderId]);
+  const selectDriver = (driverId: string) => {
+    setSelectedDriver(driverId);
+  };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -68,7 +83,15 @@ const EditOrder: React.FC<EditOrderProps> = ({ orderId, onClose }) => {
 
     try {
       if (orderId) {
-        await dispatch(updateOrder({ orderId, orderData: formData })).unwrap();
+        await dispatch(
+          updateOrder({
+            orderId,
+            orderData: {
+              ...formData,
+              driverId: selectedDriver, // ✅ sent here
+            },
+          }),
+        ).unwrap();
 
         // Call onClose if provided, otherwise navigate back
         // if (onClose) {
@@ -108,6 +131,71 @@ const EditOrder: React.FC<EditOrderProps> = ({ orderId, onClose }) => {
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <div className="space-y-4">
+            {" "}
+            <label className="block text-sm font-medium mb-2">
+              Assign order to Driver
+            </label>
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <input
+                type="text"
+                className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl"
+                placeholder="Search drivers by name"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+            <div className="bg-gray-50 rounded-xl p-4 max-h-80 overflow-y-auto space-y-2">
+              {loading && <p className="text-center">Loading...</p>}
+
+              {!loading &&
+                allDrivers?.map((driver: any) => (
+                  <div
+                    key={driver.id}
+                    onClick={() => selectDriver(driver.id)}
+                    className={`flex items-center justify-between p-3 rounded-lg cursor-pointer
+          ${
+            selectedDriver === driver.id
+              ? "bg-indigo-50 border-2 text-black border-indigo-200"
+              : "bg-white border border-gray-200"
+          }`}
+                  >
+                    <span>{driver.fullname}</span>
+
+                    {selectedDriver === driver.id ? (
+                      <Trash2
+                        onClick={(e) => {
+                          e.stopPropagation(); // 🔥 IMPORTANT
+                          selectDriver("");
+                        }}
+                        className="text-red-600 h-5 w-5"
+                      />
+                    ) : (
+                      <Plus className="text-gray-600 h-5 w-5" />
+                    )}
+                  </div>
+                ))}
+            </div>
+            {/* <div className="bg-gray-50 rounded-xl p-4 max-h-80 overflow-y-auto space-y-2">
+              {loading && <p className="text-center">Loading...</p>}
+              {!loading &&
+                Array.isArray(allDrivers) &&
+                allDrivers?.map((product: any) => (
+                  <div
+                    key={product.id}
+                    className={`flex items-center justify-between p-3 rounded-lg cursor-pointer ${
+                      selectedDriver.includes(product.id)
+                        ? "bg-indigo-50 border-2 border-indigo-200"
+                        : "bg-white border border-gray-200"
+                    }`}
+                    // onClick={() => toggleProduct(product.id)}
+                  >
+                    <span>{product.name}</span>
+                  </div>
+                ))}
+            </div> */}
+          </div>
           {updateError && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
               {updateError}
@@ -236,7 +324,7 @@ const EditOrder: React.FC<EditOrderProps> = ({ orderId, onClose }) => {
           <div className="flex justify-end space-x-4 pt-6 border-t">
             <button
               type="button"
-              onClick={() => router.push("/admin/orders")}
+              onClick={() => router.push("/admin/dashboard/orders")}
               className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
             >
               Cancel

@@ -76,6 +76,19 @@ export const fetchUserOrders = createAsyncThunk(
   }
 );
 
+export const fetchRidersOrders = createAsyncThunk(
+  "orders/fetchRiderser",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await orderService.getOrderForRider();
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data?.message || err.message);
+    }
+  }
+);
+
+
+
 export const fetchOrderById = createAsyncThunk(
   "orders/fetchById",
   async (orderId: string, { rejectWithValue }) => {
@@ -200,6 +213,18 @@ const orderSlice = createSlice({
         }
       })
       .addCase(updateOrder.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload as string;
+      })
+
+      .addCase(fetchRidersOrders.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchRidersOrders.fulfilled, (state, action: PayloadAction) => {
+        state.status = "succeeded";
+        state.orders = action.payload.orders;
+      })
+      .addCase(fetchRidersOrders.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload as string;
       });

@@ -50,7 +50,7 @@ export default function AddSectionForm() {
         order,
         isActive,
         productIds: selectedProducts,
-      })
+      }),
     );
   };
 
@@ -239,7 +239,7 @@ export default function AddSectionForm() {
               <div className="flex flex-wrap gap-2">
                 {selectedProducts.map((id) => {
                   const product = products.products.find(
-                    (p: any) => p.id === id
+                    (p: any) => p.id === id,
                   );
                   return (
                     <span

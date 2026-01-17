@@ -174,6 +174,28 @@ export const logout = createAsyncThunk(
   }
 );
 
+
+export const getAllDriversforAdmin = createAsyncThunk(
+  "auth/getDrivers",
+  async (    data: {
+search?: string;
+page?: number;
+limit?: number;
+  }, { rejectWithValue }) => {
+    try {
+      const response = await authService.getAllDrivers(data);
+      console.log(response);
+      return response.users;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue("Email login failed");
+    }
+  }
+);
+
+
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
@@ -185,6 +207,7 @@ const initialState: AuthState = {
   role: "user",
   addressStatus: "idle",
   addressError: null,
+  allDrivers: [],
 };
 
 const authSlice = createSlice({
@@ -369,7 +392,21 @@ const authSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.registerStatus = "failed";
         state.error = action.payload;
-      });
+
+       }) .addCase(getAllDriversforAdmin.pending, (state,action) => {
+        state.status = "loading";
+      })
+      .addCase(getAllDriversforAdmin.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.allDrivers = action.payload;
+      })
+      .addCase(getAllDriversforAdmin.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+      
+
+     
   },
 });
 
