@@ -53,7 +53,7 @@ export default function EcommerceNavbar() {
   const { categories } = useAppSelector((state: RootState) => state.category);
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-100">
+    <nav className=" shadow-lg sticky top-0 z-50 border-b border-gray-100">
       {/* Top Bar */}
       {/* <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm py-2">
         <div className=" mx-auto px-4 flex justify-between items-center">
@@ -89,9 +89,14 @@ export default function EcommerceNavbar() {
           <div className="flex items-center space-x-1 md:space-x-8">
             <div className="flex-shrink-0">
               <Link href="/">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-lime-500 bg-clip-text text-transparent">
-                  {/* {brandName} */} Kishan Haat
-                </h1>
+                <img
+                  src="/logo.jpg"
+                  alt="Kishan Haat"
+                  className="w-32 h-auto"
+                />
+                {/* <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-lime-500 bg-clip-text text-transparent">
+                 Kishan Haat
+                </h1> */}
               </Link>
             </div>
 
