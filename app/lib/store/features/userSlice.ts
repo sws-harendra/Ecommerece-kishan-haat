@@ -99,20 +99,20 @@ export const deleteUser = createAsyncThunk(
 );
 
 // Update User
-// export const updateUser = createAsyncThunk(
-//   "users/updateUser",
-//   async (
-//     { userId, data }: { userId: number; data: Partial<User> },
-//     { rejectWithValue }
-//   ) => {
-//     try {
-//       const res = await authService.updateUser(userId, data);
-//       return res.user; // updated user
-//     } catch (err: any) {
-//       return rejectWithValue(err.message || "Failed to update user");
-//     }
-//   }
-// );
+export const updateUser = createAsyncThunk(
+  "users/updateUser",
+  async (
+    { userId, data }: { userId: string; data: FormData },
+    { rejectWithValue }
+  ) => {
+    try {
+      const res = await authService.updateUser(userId, data);
+      return res.user; // updated user
+    } catch (err: any) {
+      return rejectWithValue(err.message || "Failed to update user");
+    }
+  }
+);
 
 // ---------- Slice ----------
 const usersSlice = createSlice({
@@ -151,18 +151,17 @@ const usersSlice = createSlice({
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.users = state.users.filter((u) => u.id !== action.payload);
         state.totalUsers -= 1;
+      })
+      // Update user
+      .addCase(updateUser.fulfilled, (state, action) => {
+        const idx = state.users.findIndex((u) => u.id === action.payload.id);
+        if (idx !== -1) {
+          state.users[idx] = action.payload;
+        }
+        if (state.selectedUser?.id === action.payload.id) {
+          state.selectedUser = action.payload;
+        }
       });
-
-    // Update user
-    //   .addCase(updateUser.fulfilled, (state, action) => {
-    //     const idx = state.users.findIndex((u) => u.id === action.payload.id);
-    //     if (idx !== -1) {
-    //       state.users[idx] = action.payload;
-    //     }
-    //     if (state.selectedUser?.id === action.payload.id) {
-    //       state.selectedUser = action.payload;
-    //     }
-    //   });
   },
 });
 

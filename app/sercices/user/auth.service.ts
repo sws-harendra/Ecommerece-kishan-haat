@@ -125,5 +125,13 @@ export const authService = {
       userData
     );
     return response.data;
+  },
+  updateUser: async (userId: string, data: FormData) => {
+    const response = await axiosInstance.put(
+      `/user/admin-update-user/${userId}`,
+      data,
+      { headers: { "Content-Type": "multipart/form-data" } }
+    );
+    return response.data;
   }
 };

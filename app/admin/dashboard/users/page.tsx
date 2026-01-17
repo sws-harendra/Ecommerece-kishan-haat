@@ -5,6 +5,7 @@ import { deleteUser, fetchUsers } from "@/app/lib/store/features/userSlice";
 import { getImageUrl } from "@/app/utils/getImageUrl";
 import SidebarForm from "../../components/SidebarForm";
 import AddUsers from "../../components/addUser";
+import EditUser from "../../components/editUser";
 
 export default function AdminUsersPage() {
   const dispatch = useAppDispatch();
@@ -296,7 +297,7 @@ export default function AdminUsersPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button
+                          {/* <button
                             // onClick={() => handleUserAction("view", u.id)}
                             className="text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 p-2 rounded-lg transition-colors duration-200"
                             title="View Details"
@@ -320,26 +321,32 @@ export default function AdminUsersPage() {
                                 d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                               />
                             </svg>
-                          </button>
-                          <button
-                            // onClick={() => handleUserAction("edit", u.id)}
-                            className="text-amber-600 hover:text-amber-900 hover:bg-amber-50 p-2 rounded-lg transition-colors duration-200"
-                            title="Edit User"
+                          </button> */}
+                          <SidebarForm
+                            title={`Edit ${u.fullname}`}
+                            trigger={
+                              <button
+                                className="text-amber-600 hover:text-amber-900 hover:bg-amber-50 p-2 rounded-lg transition-colors duration-200"
+                                title="Edit User"
+                              >
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                  />
+                                </svg>
+                              </button>
+                            }
                           >
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                              />
-                            </svg>
-                          </button>
+                            <EditUser user={u} onSuccess={handleClose} />
+                          </SidebarForm>
                           <button
                             onClick={() => {
                               if (
