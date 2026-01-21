@@ -109,7 +109,7 @@ const AddUsers = ({ onSuccess }: any) => {
           onChange={(e) => setRole(e.target.value)}
         >
           <option value="user">User</option>
-          <option value="driver">Agent</option>
+          <option value="driver">Associate</option>
         </select>
       </div>
 

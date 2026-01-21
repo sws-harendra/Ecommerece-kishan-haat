@@ -16,10 +16,10 @@ export const registerUser = createAsyncThunk(
       return await authService.registerUser(userData);
     } catch (err: any) {
       return rejectWithValue(
-        err.response?.data?.message || "Registration failed"
+        err.response?.data?.message || "Registration failed",
       );
     }
-  }
+  },
 );
 export const registerUserbyAdmin = createAsyncThunk(
   "auth/register/admin",
@@ -28,12 +28,11 @@ export const registerUserbyAdmin = createAsyncThunk(
       return await authService.registerUseradmin(userData);
     } catch (err: any) {
       return rejectWithValue(
-        err.response?.data?.message || "Registration failed"
+        err.response?.data?.message || "Registration failed",
       );
     }
-  }
+  },
 );
-
 
 export const emailLogin = createAsyncThunk(
   "auth/emailLogin",
@@ -47,7 +46,7 @@ export const emailLogin = createAsyncThunk(
       }
       return rejectWithValue("Email login failed");
     }
-  }
+  },
 );
 
 export const sendOtpToPhone = createAsyncThunk(
@@ -62,7 +61,7 @@ export const sendOtpToPhone = createAsyncThunk(
       }
       return rejectWithValue("Email login failed");
     }
-  }
+  },
 );
 
 export const verifyPhoneOtp = createAsyncThunk(
@@ -77,7 +76,7 @@ export const verifyPhoneOtp = createAsyncThunk(
       }
       return rejectWithValue("OTP verification failed");
     }
-  }
+  },
 );
 
 export const resendOtp = createAsyncThunk(
@@ -92,7 +91,7 @@ export const resendOtp = createAsyncThunk(
       }
       return rejectWithValue("Email login failed");
     }
-  }
+  },
 );
 // auth.slice.ts
 export const updateUserInfo = createAsyncThunk(
@@ -102,9 +101,10 @@ export const updateUserInfo = createAsyncThunk(
       fullname?: string;
       email?: string;
       phoneNumber?: string;
+      secondaryNumber?: string;
       password?: string;
     },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const response = await authService.updateUserInfo(data);
@@ -115,7 +115,7 @@ export const updateUserInfo = createAsyncThunk(
       }
       return rejectWithValue("User update failed");
     }
-  }
+  },
 );
 
 export const getUserDetails = createAsyncThunk(
@@ -131,7 +131,7 @@ export const getUserDetails = createAsyncThunk(
       }
       return rejectWithValue("Email login failed");
     }
-  }
+  },
 );
 
 export const addUserAddress = createAsyncThunk(
@@ -142,10 +142,11 @@ export const addUserAddress = createAsyncThunk(
       address1: string;
       address2?: string;
       city: string;
+      landmark: string;
       state?: string;
       zipCode: string;
     },
-    { rejectWithValue }
+    { rejectWithValue },
   ) => {
     try {
       const response = await authService.addUserAddress(address);
@@ -153,7 +154,7 @@ export const addUserAddress = createAsyncThunk(
     } catch (err: any) {
       return rejectWithValue(err.message || "Failed to add address");
     }
-  }
+  },
 );
 
 export const deleteUserAddress = createAsyncThunk(
@@ -165,7 +166,7 @@ export const deleteUserAddress = createAsyncThunk(
     } catch (err: any) {
       return rejectWithValue(err.message || "Failed to delete address");
     }
-  }
+  },
 );
 
 export const logout = createAsyncThunk(
@@ -184,17 +185,19 @@ export const logout = createAsyncThunk(
       }
       return rejectWithValue("Email login failed");
     }
-  }
+  },
 );
-
 
 export const getAllDriversforAdmin = createAsyncThunk(
   "auth/getDrivers",
-  async (    data: {
-search?: string;
-page?: number;
-limit?: number;
-  }, { rejectWithValue }) => {
+  async (
+    data: {
+      search?: string;
+      page?: number;
+      limit?: number;
+    },
+    { rejectWithValue },
+  ) => {
     try {
       const response = await authService.getAllDrivers(data);
       console.log(response);
@@ -205,9 +208,8 @@ limit?: number;
       }
       return rejectWithValue("Email login failed");
     }
-  }
+  },
 );
-
 
 const initialState: AuthState = {
   user: null,
@@ -405,8 +407,8 @@ const authSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.registerStatus = "failed";
         state.error = action.payload;
-
-       }) .addCase(getAllDriversforAdmin.pending, (state,action) => {
+      })
+      .addCase(getAllDriversforAdmin.pending, (state, action) => {
         state.status = "loading";
       })
       .addCase(getAllDriversforAdmin.fulfilled, (state, action) => {
@@ -417,7 +419,7 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-        .addCase(registerUserbyAdmin.pending, (state) => {
+      .addCase(registerUserbyAdmin.pending, (state) => {
         state.registerStatus = "loading";
       })
       .addCase(registerUserbyAdmin.fulfilled, (state, action) => {
@@ -427,10 +429,7 @@ const authSlice = createSlice({
       .addCase(registerUserbyAdmin.rejected, (state, action) => {
         state.registerStatus = "failed";
         state.error = action.payload;
-
-       });
-
-     
+      });
   },
 });
 

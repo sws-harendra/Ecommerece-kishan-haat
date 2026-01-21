@@ -176,7 +176,7 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
           className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
         >
           <option value="user">User</option>
-          <option value="driver">Agent</option>
+          <option value="driver">Associate</option>
           <option value="admin">Admin</option>
         </select>
       </div>

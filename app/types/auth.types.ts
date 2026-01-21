@@ -29,7 +29,7 @@ export interface AuthState {
   phoneNumber: string;
   otpSent: boolean;
   registerStatus?: "idle" | "loading" | "succeeded" | "failed";
-  role: "user" | "admin" | "driver" ;
+  role: "user" | "admin" | "driver";
   addressStatus?: "idle" | "loading" | "succeeded" | "failed";
   addressError?: string | null;
   allDrivers: User[];
@@ -55,6 +55,7 @@ export interface User {
   fullname: string;
   role: "user" | "admin" | "driver";
   phoneNumber?: string;
+  secondaryNumber?: string;
   avatar?: string;
   createdAt?: string;
   updatedAt?: string;

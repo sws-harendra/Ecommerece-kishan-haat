@@ -53,7 +53,7 @@ export default function EcommerceNavbar() {
   const { categories } = useAppSelector((state: RootState) => state.category);
 
   return (
-    <nav className=" shadow-lg sticky top-0 z-50 border-b border-gray-100">
+    <nav className=" shadow-lg sticky top-0 z-50 border-b bg-white border-gray-100">
       {/* Top Bar */}
       {/* <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm py-2">
         <div className=" mx-auto px-4 flex justify-between items-center">
@@ -157,7 +157,8 @@ export default function EcommerceNavbar() {
             <div className="relative">
               <Link href={"/cart"}>
                 <button className="text-gray-600 hover:text-lime-500 transition-colors duration-200 group">
-                  <ShoppingCart className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
+                  <img src="/cart1.png" className="w-12 h-auto" />
+                  {/* <ShoppingCart className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" /> */}
                   {cartCount > 0 && (
                     <span className="absolute -top-2 -right-2 bg-gradient-to-r from-green-700 via-green-600 to-lime-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-bounce">
                       {cartCount}
@@ -210,7 +211,7 @@ export default function EcommerceNavbar() {
                         onClick={() => setIsProfileOpen(false)}
                         className="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-lime-500 transition-colors"
                       >
-                        Order for you (Rider)
+                        Order for you (Associate)
                       </Link>
                     )}
                     {/* <a

@@ -57,12 +57,14 @@ interface FormData {
     // name: string; // optional (not in backend yet, but fine to keep as label)
     address1: string; // ✅ should be address1
     address2: string;
+    landmark: string;
     city: string;
     state: string;
     zipCode: string;
   };
   cardNumber: string;
   cardName: string;
+  secondaryNumber: string;
   expiryDate: string;
   cvv: string;
   saveInfo: boolean;
@@ -79,7 +81,7 @@ const CheckoutPage = () => {
   const { items } = useSelector(selectCart);
   const totalItems = useSelector(selectCartItemsCount);
   const { isAuthenticated, status, user, addressStatus } = useAppSelector(
-    (state: RootState) => state.auth
+    (state: RootState) => state.auth,
   );
 
   // Mock addresses - In real app, fetch from profile slice
@@ -100,11 +102,12 @@ const CheckoutPage = () => {
           name: addr.addressType, // or addr.label if you add one
           address1: addr.address1,
           address2: addr.address2,
+          landmark: addr.landmark,
           city: addr.city,
           state: addr.state,
           zipCode: addr.zipCode,
           isDefault: false, // you can add a flag in backend later
-        }))
+        })),
       );
     }
   }, [user]);
@@ -113,12 +116,14 @@ const CheckoutPage = () => {
     email: "",
     fullname: "",
     phone: "",
+    secondaryNumber: "",
     selectedAddressId:
       savedAddresses.find((addr) => addr.addressType === "home")?.id || "",
     newAddress: {
       type: "home",
       address1: "",
       address2: "",
+      landmark: "",
       city: "",
       state: "",
       zipCode: "",
@@ -138,6 +143,7 @@ const CheckoutPage = () => {
         email: user.email || "",
         fullname: user.fullname || "",
         phone: user.phoneNumber || "",
+        secondaryNumber: user.secondaryNumber || "",
       }));
     }
   }, [user]);
@@ -147,7 +153,7 @@ const CheckoutPage = () => {
   // Calculate order totals
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
   // const shipping = subtotal > 100 ? 0 : 9.99;
   const tax = subtotal * 0.08;
@@ -155,7 +161,7 @@ const CheckoutPage = () => {
   const total = subtotal;
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value, type } = e.target;
     const checked =
@@ -262,12 +268,14 @@ const CheckoutPage = () => {
           if (formData.email !== user.email) updates.email = formData.email;
           if (formData.phone !== user.phoneNumber)
             updates.phoneNumber = formData.phone;
+          if (formData.secondaryNumber !== user.secondaryNumber)
+            updates.secondaryNumber = formData.secondaryNumber;
 
           if (Object.keys(updates).length > 0) {
             await dispatch(
               updateUserInfo({
                 ...updates,
-              })
+              }),
             ).unwrap();
           }
         }
@@ -341,7 +349,7 @@ const CheckoutPage = () => {
                 })),
                 paymentMethod: "online",
                 transactionId: res.razorpay_payment_id,
-              })
+              }),
             ).unwrap();
             setOrderId(newres?.orderId);
             setOrderSuccess(true);
@@ -388,7 +396,7 @@ const CheckoutPage = () => {
             variantName: i.variantName,
           })),
           paymentMethod: formData.paymentMethods,
-        })
+        }),
       ).unwrap();
 
       setOrderSuccess(true);
@@ -434,10 +442,11 @@ const CheckoutPage = () => {
             addressType: formData.newAddress.type,
             address1: formData.newAddress.address1,
             address2: formData.newAddress.address2,
+            landmark: formData.newAddress.landmark,
             city: formData.newAddress.city,
             state: formData.newAddress.state,
             zipCode: formData.newAddress.zipCode,
-          })
+          }),
         ).unwrap();
 
         setShowAddressForm(false);
@@ -552,8 +561,8 @@ const CheckoutPage = () => {
                           activeStep >= step
                             ? "bg-gradient-to-r from-green-600 to-lime-600 text-white shadow-lg"
                             : activeStep > step
-                            ? "bg-green-500 text-white"
-                            : "bg-gray-200 text-gray-500"
+                              ? "bg-green-500 text-white"
+                              : "bg-gray-200 text-gray-500"
                         }`}
                       >
                         {activeStep > step ? (
@@ -579,8 +588,8 @@ const CheckoutPage = () => {
                             activeStep > step
                               ? "bg-gradient-to-r from-green-500 to-green-600"
                               : activeStep === step
-                              ? "bg-gradient-to-r from-green-600 to-lime-600"
-                              : "bg-gray-200"
+                                ? "bg-gradient-to-r from-green-600 to-lime-600"
+                                : "bg-gray-200"
                           }`}
                         ></div>
                       </div>
@@ -674,7 +683,7 @@ const CheckoutPage = () => {
 
                 <div className="mb-8">
                   <label className="block text-sm font-semibold text-gray-700 mb-3">
-                    Phone Number *
+                    Primary Phone Number *
                   </label>
                   <input
                     type="tel"
@@ -686,7 +695,7 @@ const CheckoutPage = () => {
                         ? "border-red-400 bg-red-50"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
-                    placeholder="Enter your phone number"
+                    placeholder="Enter your primary phone number"
                   />
                   {errors.phone && (
                     <p className="mt-2 text-sm text-red-600 font-medium">
@@ -694,7 +703,28 @@ const CheckoutPage = () => {
                     </p>
                   )}
                 </div>
-
+                <div className="mb-8">
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    Secondary Phone Number *
+                  </label>
+                  <input
+                    type="tel"
+                    name="secondaryNumber"
+                    value={formData.secondaryNumber}
+                    onChange={handleInputChange}
+                    className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                      errors.phone
+                        ? "border-red-400 bg-red-50"
+                        : "border-gray-200 hover:border-gray-300"
+                    }`}
+                    placeholder="Enter your primary phone number"
+                  />
+                  {errors.phone && (
+                    <p className="mt-2 text-sm text-red-600 font-medium">
+                      {errors.phone}
+                    </p>
+                  )}
+                </div>
                 <div className="flex justify-end">
                   <button
                     onClick={() => {
@@ -786,7 +816,7 @@ const CheckoutPage = () => {
 
                 {/* New Address Form */}
                 {showAddressForm && (
-                  <div className="mb-8">
+                  <div className="mb-3">
                     <div className="flex items-center justify-between mb-6">
                       <h3 className="text-lg font-semibold text-gray-800">
                         Add New Address
@@ -799,7 +829,7 @@ const CheckoutPage = () => {
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-0">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-3">
                           Address Type *
@@ -842,6 +872,29 @@ const CheckoutPage = () => {
 
                     {/* Rest of the address form fields */}
 
+                    <div className="mb-6">
+                      <label className="block text-sm font-semibold text-gray-700 mb-3">
+                        LandMark
+                      </label>
+                      <input
+                        type="text"
+                        name="newAddress.landmark"
+                        required
+                        value={formData.newAddress.landmark}
+                        onChange={handleInputChange}
+                        placeholder="Landmark."
+                        className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                          errors["newAddress.landmark"]
+                            ? "border-red-400 bg-red-50"
+                            : "border-gray-200 hover:border-gray-300"
+                        }`}
+                      />{" "}
+                      {errors["newAddress.landmark"] && (
+                        <p className="mt-2 text-sm text-red-600 font-medium">
+                          {errors["newAddress.landmark"]}
+                        </p>
+                      )}
+                    </div>
                     <div className="mb-6">
                       <label className="block text-sm font-semibold text-gray-700 mb-3">
                         Apartment, Suite, etc. (optional)
@@ -989,12 +1042,12 @@ const CheckoutPage = () => {
                   const allCod = items.every(
                     (item) =>
                       item.paymentMethods === "cod" ||
-                      item.paymentMethods === "both"
+                      item.paymentMethods === "both",
                   );
                   const allOnline = items.every(
                     (item) =>
                       item.paymentMethods === "online" ||
-                      item.paymentMethods === "both"
+                      item.paymentMethods === "both",
                   );
                   return (
                     <div className="flex flex-col gap-4 mb-8">

@@ -16,7 +16,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const pathname = usePathname();
 
   const { isAuthenticated, user, status } = useAppSelector(
-    (state: RootState) => state.auth // ✅ typed state
+    (state: RootState) => state.auth, // ✅ typed state
   );
 
   // Check authentication on app load
@@ -39,6 +39,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       "/",
       "/cart",
       "/artists",
+      "/products",
     ];
 
     // also allow dynamic product pages

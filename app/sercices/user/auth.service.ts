@@ -48,6 +48,7 @@ export const authService = {
     fullname?: string;
     email?: string;
     phoneNumber?: string;
+    secondaryNumber?: string;
     password?: string;
   }) => {
     const response = await axiosInstance.put("/user/update-user-info", data);
@@ -57,13 +58,14 @@ export const authService = {
     addressType: string;
     address1: string;
     address2?: string;
+    landmark: string;
     city: string;
     state?: string;
     zipCode: string;
   }) => {
     const response = await axiosInstance.put(
       "/user/update-user-addresses",
-      address
+      address,
     );
     console.log("resssppinse==>", response.data, response.data);
     return response.data; // { success, address }
@@ -71,7 +73,7 @@ export const authService = {
 
   deleteUserAddress: async (id: string) => {
     const response = await axiosInstance.delete(
-      `/user/delete-user-address/${id}`
+      `/user/delete-user-address/${id}`,
     );
     return response.data; // { success, addresses }
   },
@@ -111,9 +113,7 @@ export const authService = {
     return response.data; // { success, totalUsers, currentPage, totalPages, users }
   },
 
-  getAllDrivers: async (params: {
-    search?: string;
-  }) => {
+  getAllDrivers: async (params: { search?: string }) => {
     const response = await axiosInstance.get("/driver/admin-all-drivers", {
       params,
     });
@@ -122,7 +122,7 @@ export const authService = {
   registerUseradmin: async (userData: FormData) => {
     const response = await axiosInstance.post(
       "/user/admin-create-user",
-      userData
+      userData,
     );
     return response.data;
   },
@@ -130,8 +130,8 @@ export const authService = {
     const response = await axiosInstance.put(
       `/user/admin-update-user/${userId}`,
       data,
-      { headers: { "Content-Type": "multipart/form-data" } }
+      { headers: { "Content-Type": "multipart/form-data" } },
     );
     return response.data;
-  }
+  },
 };
