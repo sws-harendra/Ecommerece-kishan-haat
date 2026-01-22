@@ -34,7 +34,7 @@ interface ProductCardProps {
 // console.log(cartCount?.forEach((element) => {
 //   if (element.id == 2){
 //     productQuantity= element.quantity
-    
+
 //   }
 // }))
 
@@ -55,7 +55,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
     parseFloat(originalPrice) - parseFloat(price)
   ).toFixed(0);
 
-
   return (
     <Link href={`/products/${slugify(name)}/${id}`}>
       <div className="group relative bg-white rounded-3xl shadow-sm border border-green-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200/50 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
@@ -74,7 +73,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Enhanced Favorite Button */}
-        <button
+        {/* <button
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -90,7 +89,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 : "text-gray-400 group-hover/heart:text-lime-600"
             }`}
           />
-        </button>
+        </button> */}
 
         {/* Enhanced Product Image */}
         <div className="relative h-64 overflow-hidden bg-gray-50">
@@ -130,7 +129,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     quantity: 1,
                     imageUrl: image || "",
                     paymentMethods: paymentMethods,
-                  })
+                  }),
                 );
               }}
               className="bg-green-700 text-white p-3 rounded-2xl shadow-xl hover:bg-green-800 hover:scale-110 transition-all duration-300 group/add"
@@ -166,8 +165,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
                       i < Math.floor(rating)
                         ? "text-yellow-500 fill-yellow-500 drop-shadow-sm"
                         : i === Math.floor(rating) && rating % 1 >= 0.5
-                        ? "text-yellow-500 fill-yellow-500/50"
-                        : "text-gray-300"
+                          ? "text-yellow-500 fill-yellow-500/50"
+                          : "text-gray-300"
                     }`}
                   />
                 ))}
@@ -209,7 +208,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     quantity: 1,
                     imageUrl: image || "",
                     paymentMethods: paymentMethods,
-                  })
+                  }),
                 );
               }}
               className="bg-green-700 text-white p-3 rounded-2xl hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
@@ -218,7 +217,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 size={18}
                 className="relative group-hover/cart:rotate-12 transition-transform duration-300"
               />
-              
             </button>
           </div>
 

@@ -23,7 +23,7 @@ export default function EditSectionForm({ section }: { section: any }) {
   const [isActive, setIsActive] = useState(section?.isActive ?? true);
   const [search, setSearch] = useState("");
   const [selectedProducts, setSelectedProducts] = useState<number[]>(
-    section?.Products?.map((p: any) => p.id) || []
+    section?.Products?.map((p: any) => p.id) || [],
   );
 
   const loading = status == "loading";
@@ -57,7 +57,7 @@ export default function EditSectionForm({ section }: { section: any }) {
           isActive,
           productIds: selectedProducts,
         },
-      })
+      }),
     );
   };
 
@@ -187,8 +187,8 @@ export default function EditSectionForm({ section }: { section: any }) {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {selectedProducts.map((id) => {
-                  const product = products.products.find(
-                    (p: any) => p.id === id
+                  const product = products?.products?.find(
+                    (p: any) => p.id === id,
                   );
                   return (
                     <span

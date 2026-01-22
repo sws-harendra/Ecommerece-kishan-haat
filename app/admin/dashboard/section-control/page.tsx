@@ -101,13 +101,6 @@ export default function SectionManager() {
               <p className="text-gray-600 mb-6">
                 Create your first section to start organizing products
               </p>
-              <button
-                onClick={() => setShowForm(true)}
-                className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors font-medium"
-              >
-                <Plus size={20} />
-                Create First Section
-              </button>
             </div>
           )}
 

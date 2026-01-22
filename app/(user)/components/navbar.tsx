@@ -90,7 +90,7 @@ export default function EcommerceNavbar() {
             <div className="flex-shrink-0">
               <Link href="/">
                 <img
-                  src="/logo.jpg"
+                  src="/logo.png"
                   alt="Kishan Haat"
                   className="w-32 h-auto"
                 />
