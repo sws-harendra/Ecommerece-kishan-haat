@@ -22,7 +22,7 @@ export default function BannerCarousel() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [imageLoaded, setImageLoaded] = useState<{ [key: number]: boolean }>(
-    {}
+    {},
   );
 
   useEffect(() => {
@@ -159,13 +159,13 @@ export default function BannerCarousel() {
           {/* Enhanced navigation arrows */}
           <button
             onClick={prevSlide}
-            className="absolute top-1/2 left-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime-600/10 z-30 group/nav"
+            className="hidden md:flex absolute top-1/2 left-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime-600/10 z-30 group/nav"
           >
             <ChevronLeft className="w-6 h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute top-1/2 right-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime-600/10 z-30 group/nav"
+            className="hidden md:flex absolute top-1/2 right-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime-600/10 z-30 group/nav"
           >
             <ChevronRight className="w-6 h-6 group-hover/nav:translate-x-0.5 transition-transform" />
           </button>
@@ -173,7 +173,7 @@ export default function BannerCarousel() {
           {/* Enhanced play/pause button */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="absolute bottom-6 left-6 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime/20 z-30 group/play"
+            className="hidden md:flex absolute bottom-6 left-6 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime/20 z-30 group/play"
           >
             {isPlaying ? (
               <Pause className="w-5 h-5 group-hover/play:scale-110 transition-transform" />
@@ -183,14 +183,14 @@ export default function BannerCarousel() {
           </button>
 
           {/* Enhanced counter */}
-          <div className="absolute bottom-6 right-6 bg-white/20 backdrop-blur-md text-lime-500 px-4 py-2 rounded-2xl text-sm font-semibold shadow-xl border border-white/20 z-30">
+          <div className="hidden md:flex absolute bottom-6 right-6 bg-white/20 backdrop-blur-md text-lime-500 px-4 py-2 rounded-2xl text-sm font-semibold shadow-xl border border-white/20 z-30">
             <span className="drop-shadow-sm">
               {currentSlide + 1} / {banners.length}
             </span>
           </div>
 
           {/* Enhanced dots indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-30">
+          <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 space-x-3 z-30">
             {banners.map((_, index) => (
               <button
                 key={index}

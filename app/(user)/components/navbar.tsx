@@ -298,13 +298,13 @@ export default function EcommerceNavbar() {
             ))}
 
             {/* Mobile Wishlist */}
-            <a
+            {/* <a
               href="#"
               className="flex items-center space-x-3 py-3 text-gray-700 hover:text-red-500 transition-colors"
             >
               <Heart className="w-5 h-5" />
               <span>Wishlist ({wishlistCount})</span>
-            </a>
+            </a> */}
           </div>
         </div>
       )}

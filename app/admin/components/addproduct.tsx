@@ -44,6 +44,7 @@ const AddProducts = () => {
     trendingProduct: false,
     paymentMethods: "both",
     artistId: "",
+    varientValue: "",
   });
 
   const [mediaFiles, setMediaFiles] = useState<MediaFile[]>([]);
@@ -71,7 +72,7 @@ const AddProducts = () => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -114,6 +115,7 @@ const AddProducts = () => {
       data.append("discountPrice", formData.discountPrice);
       data.append("stock", formData.stock);
       data.append("trending_product", String(formData.trendingProduct));
+      data.append("varientValue", formData.varientValue);
       if (formData.artistId != null && formData.artistId != "")
         data.append("artistId", formData.artistId);
       data.append("paymentMethods", formData.paymentMethods);
@@ -136,6 +138,7 @@ const AddProducts = () => {
         discountPrice: "",
         stock: "",
         trendingProduct: false,
+        varientValue: "",
         paymentMethods: "",
         artistId: "",
       });
@@ -164,7 +167,7 @@ const AddProducts = () => {
       // Recursively add subcategories
       if (cat.subcategories && cat.subcategories.length > 0) {
         result = result.concat(
-          flattenCategoriesForDropdown(cat.subcategories, level + 1)
+          flattenCategoriesForDropdown(cat.subcategories, level + 1),
         );
       }
     });
@@ -185,7 +188,7 @@ const AddProducts = () => {
 
       if (cat.subcategories && cat.subcategories.length > 0) {
         result = result.concat(
-          flattenCategoriesForTable(cat.subcategories, level + 1)
+          flattenCategoriesForTable(cat.subcategories, level + 1),
         );
       }
     });
@@ -280,6 +283,20 @@ const AddProducts = () => {
                         </option>
                       ))}
                     </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Add Varient Type
+                    </label>
+                    <input
+                      type="text"
+                      name="varientValue"
+                      placeholder="eg. 100gm or 1kg"
+                      value={formData.varientValue}
+                      onChange={handleChange}
+                      className="w-full pl-2 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
+                      required
+                    />
                   </div>
 
                   {/* Tags */}

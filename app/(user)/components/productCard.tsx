@@ -57,12 +57,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <Link href={`/products/${slugify(name)}/${id}`}>
-      <div className="group relative bg-white rounded-3xl shadow-sm border border-green-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200/50 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
+      <div className="group relative bg-white rounded-xl sm:rounded-3xl shadow-sm sm:border sm:border-green-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200/50 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
         {/* Enhanced Discount Badge */}
         <div className="absolute top-4 left-4 z-20">
           <div className="relative">
             <div className="bg-green-900 text-white px-3 py-1.5 rounded-2xl text-xs font-bold shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
-              <span className="flex items-center gap-1">
+              <span className="sm:text-base text-[10px] flex items-center gap-1">
                 <Zap size={10} className="text-yellow-300" />
                 {discount}% OFF
               </span>
@@ -92,7 +92,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </button> */}
 
         {/* Enhanced Product Image */}
-        <div className="relative h-64 overflow-hidden bg-gray-50">
+        <div className="relative h-32 sm:h-64 overflow-hidden bg-gray-50">
           <img
             src={getImageUrl(image)}
             alt={name}
@@ -143,10 +143,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Enhanced Product Info */}
-        <div className="p-5 space-y-4">
+        <div className="p-2 sm:p-5 space-y-0">
           {/* Product Name */}
-          <div className="space-y-2">
-            <h3 className="text-gray-900 group-hover:text-green-900 transition-colors duration-300 truncate text-base leading-snug tracking-tight">
+          <div className="text-left  space-y-2">
+            <h3 className=" text-xs text-gray-900 group-hover:text-green-900 transition-colors duration-300 truncate sm:text-base leading-snug tracking-tight">
               {name}
             </h3>
 
@@ -154,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
 
           {/* Enhanced Rating */}
-          <div className="flex items-center justify-between">
+          {/* <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="flex items-center space-x-0.5">
                 {[...Array(5)].map((_, i) => (
@@ -176,23 +176,27 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </span>
             </div>
 
-            {/* Enhanced Stock Status */}
-          </div>
+          </div> */}
 
           {/* Enhanced Price Section */}
-          <div className="flex items-end justify-between ">
-            <div className="">
-              <div className="flex items-baseline space-x-2">
-                <span className="text-xl font-bold text-gray-900 tracking-tight">
+          <div className="flex  items-center sm:items-end justify-between ">
+            <div className="text-left sm:text-center">
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-center gap-1 sm:gap-3">
+                {/* Selling Price */}
+                <span className="text-lg sm:text-2xl font-extrabold text-gray-900 tracking-tight">
                   ₹{price}
                 </span>
-                <span className="text-sm text-gray-500 line-through font-medium">
-                  ₹{originalPrice}
+
+                {/* MRP */}
+                <span className="text-xs sm:text-sm text-gray-500">
+                  MRP
+                  <span className="ml-1 line-through font-medium">
+                    ₹{originalPrice}
+                  </span>
                 </span>
               </div>
-              {/* <div className="text-xs text-green-600 font-semibold">
-                You save ₹{discountAmount}
-              </div> */}
+
+              {/* Savings */}
             </div>
 
             {/* Enhanced Add to Cart Button */}
@@ -211,12 +215,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   }),
                 );
               }}
-              className="bg-green-700 text-white p-3 rounded-2xl hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
+              className="hidden md:flex bg-green-700 text-xs text-white sm:p-3 rounded-2xl hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
             >
-              <ShoppingCart
-                size={18}
-                className="relative group-hover/cart:rotate-12 transition-transform duration-300"
-              />
+              <ShoppingCart className="relative group-hover/cart:rotate-12 transition-transform duration-300" />
             </button>
           </div>
 

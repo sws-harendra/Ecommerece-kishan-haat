@@ -38,6 +38,7 @@ export interface Product {
   updatedAt: Date;
   Category: Category;
   paymentMethods: string;
+  varientValue: string;
   ProductVariants?: ProductVariant[]; // 👈 add this
 }
 

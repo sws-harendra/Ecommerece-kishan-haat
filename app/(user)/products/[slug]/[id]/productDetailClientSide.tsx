@@ -46,7 +46,7 @@ export default function ProductDetailClient({
 }: ProductDetailClientProps) {
   const router = useRouter();
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
-    null
+    null,
   );
 
   const [mounted, setMounted] = useState(false);
@@ -131,7 +131,6 @@ export default function ProductDetailClient({
             </span>
           </nav>
         </div>
-        
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Product Images Section */}
@@ -216,7 +215,7 @@ export default function ProductDetailClient({
                 <div className="bg-gradient-to-r from-lime-600 via-green-600 to-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
                   {discountPercentage(
                     parseFloat(product.originalPrice),
-                    parseFloat(product.discountPrice)
+                    parseFloat(product.discountPrice),
                   )}
                   % OFF
                 </div>
@@ -319,12 +318,15 @@ export default function ProductDetailClient({
             {/* Price Section with Animation */}
             <div className="space-y-1 ">
               <div className="flex items-center space-x-4">
-                <span className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                  ₹
-                  {selectedVariant
-                    ? selectedVariant.price
-                    : product.discountPrice}
-                </span>
+                <div>
+                  <span className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                    ₹
+                    {selectedVariant
+                      ? selectedVariant.price
+                      : product.discountPrice}
+                  </span>
+                  /{product?.varientValue}
+                </div>
                 <span className="text-2xl text-gray-400 line-through">
                   ₹{product.originalPrice}
                 </span>
@@ -339,7 +341,7 @@ export default function ProductDetailClient({
                       parseFloat(
                         selectedVariant
                           ? selectedVariant.price
-                          : product.discountPrice
+                          : product.discountPrice,
                       )
                     ).toFixed(2)}
                   </span>
@@ -389,7 +391,7 @@ export default function ProductDetailClient({
                       price: parseFloat(
                         selectedVariant
                           ? selectedVariant.price
-                          : product.discountPrice
+                          : product.discountPrice,
                       ),
                       quantity: 1,
                       imageUrl: displayImages?.[0] || "",
@@ -399,7 +401,7 @@ export default function ProductDetailClient({
                             .map((opt) => `${opt.category.name}: ${opt.value}`)
                             .join(", ")
                         : undefined,
-                    })
+                    }),
                   );
                   router.push("/cart");
                 }}
@@ -424,7 +426,7 @@ export default function ProductDetailClient({
                       price: parseFloat(
                         selectedVariant
                           ? selectedVariant.price
-                          : product.discountPrice
+                          : product.discountPrice,
                       ),
 
                       imageUrl: displayImages?.[0] || "",
@@ -432,7 +434,7 @@ export default function ProductDetailClient({
                       variantName: selectedVariant?.options
                         .map((opt) => `${opt.category.name}: ${opt.value}`)
                         .join(", "), // "Dimension: 14*15"
-                    })
+                    }),
                   );
                 }}
                 className="w-full group bg-white/80 backdrop-blur-sm hover:bg-white border-2 border-gray-200 hover:border-green-300 text-gray-700 hover:text-green-600 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
@@ -466,12 +468,13 @@ export default function ProductDetailClient({
                           <img
                             src={getImageUrl(variant.image)}
                             alt="Variant"
-                            
                             className="object-cover"
                           />
                         </div>
                       )}
-
+                      <span className="text-xs text-gray-500 mt-1">
+                        ₹{variant.price}
+                      </span>
                       {/* Variant options */}
                       <span className="text-sm font-medium text-center">
                         {variant.options
@@ -480,9 +483,6 @@ export default function ProductDetailClient({
                       </span>
 
                       {/* Variant price */}
-                      <span className="text-xs text-gray-500 mt-1">
-                        ₹{variant.price}
-                      </span>
                     </button>
                   ))}
                 </div>

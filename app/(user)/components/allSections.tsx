@@ -24,7 +24,7 @@ export default function HomeSections() {
   if (loading) return <p>Loading sections...</p>;
 
   return (
-    <div className="space-y-14 mx-4 md:mx-10 my-8">
+    <div className="space-y-14 mx-1 sm:mx-10 my-8">
       {sections.map((section) => {
         const totalPages = Math.ceil(section.Products.length / itemsPerPage);
         const currentPage = Math.floor(currentIndex / itemsPerPage);
@@ -32,7 +32,7 @@ export default function HomeSections() {
         // slice visible products
         const visibleProducts = section.Products.slice(
           currentIndex,
-          currentIndex + itemsPerPage
+          currentIndex + itemsPerPage,
         );
 
         return (
@@ -55,7 +55,7 @@ export default function HomeSections() {
                       setCurrentIndex((prev) =>
                         prev - itemsPerPage < 0
                           ? (totalPages - 1) * itemsPerPage
-                          : prev - itemsPerPage
+                          : prev - itemsPerPage,
                       )
                     }
                     className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 
@@ -70,7 +70,7 @@ export default function HomeSections() {
                       setCurrentIndex((prev) =>
                         prev + itemsPerPage >= section.Products.length
                           ? 0
-                          : prev + itemsPerPage
+                          : prev + itemsPerPage,
                       )
                     }
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 
@@ -83,7 +83,7 @@ export default function HomeSections() {
               )}
 
               {/* Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-5 ">
                 {visibleProducts.map((product: any) => (
                   <ProductCard
                     key={product.id}
@@ -95,7 +95,7 @@ export default function HomeSections() {
                     rating={product.ratings ?? 0}
                     discount={discountPercentage(
                       product.originalPrice,
-                      product.discountPrice
+                      product.discountPrice,
                     )}
                     paymentMethods={product.paymentMethods} // isFavorite={favorites.has(product.id)}
                     // onToggleFavorite={toggleFavorite}

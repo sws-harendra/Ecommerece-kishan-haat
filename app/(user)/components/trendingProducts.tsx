@@ -16,7 +16,7 @@ const TrendingProducts = () => {
 
   const dispatch = useAppDispatch();
   const { trendingProducts, status, error } = useAppSelector(
-    (state) => state.product
+    (state) => state.product,
   );
 
   const isLoading = status === "loading";
@@ -57,7 +57,7 @@ const TrendingProducts = () => {
     const startIndex = currentIndex;
     const endIndex = Math.min(
       startIndex + itemsPerPage,
-      trendingProducts.length
+      trendingProducts.length,
     );
     return trendingProducts.slice(startIndex, endIndex);
   };
@@ -68,7 +68,7 @@ const TrendingProducts = () => {
     isLoading && <Loader />;
   }
   return (
-    <div className="mx-4 text-center md:mx-10 my-8 relative">
+    <div className=" sm:mx-4 text-center md:mx-10 my-8 relative">
       {/* <Heading title="🔥 Trending Products" /> */}
       <div className="text-center mb-12">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 flex items-center justify-center gap-2">
@@ -91,7 +91,7 @@ const TrendingProducts = () => {
                 setCurrentIndex((prev) =>
                   prev - itemsPerPage < 0
                     ? (totalPages - 1) * itemsPerPage
-                    : prev - itemsPerPage
+                    : prev - itemsPerPage,
                 )
               }
               className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 
@@ -106,7 +106,7 @@ const TrendingProducts = () => {
                 setCurrentIndex((prev) =>
                   prev + itemsPerPage >= trendingProducts.length
                     ? 0
-                    : prev + itemsPerPage
+                    : prev + itemsPerPage,
                 )
               }
               className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 
@@ -119,7 +119,7 @@ const TrendingProducts = () => {
         )}
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-5 lg:gap-6">
           {getVisibleProducts().map((product) => (
             <ProductCard
               key={product.id}
@@ -131,7 +131,7 @@ const TrendingProducts = () => {
               rating={product.ratings ?? 0} // ✅ fallback
               discount={discountPercentage(
                 product.originalPrice,
-                product.discountPrice
+                product.discountPrice,
               )}
               paymentMethods={product.paymentMethods}
               isFavorite={favorites.has(product.id)}
