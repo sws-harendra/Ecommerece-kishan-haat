@@ -238,7 +238,7 @@ export default function VideoProduct() {
                           video.Product?.name || "product"
                         )}/${video.productId}`}
                         onClick={handleShopNowClick}
-                        className="bg-gradient-to-r from-green-700 via-green-600 to-lime-500 hover:from-green-700 hover:via-green-700 hover:to-green-700 text-black px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-sm hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        className="bg-gradient-to-r from-green-700 via-green-600 to-lime-500 hover:from-green-700 hover:via-green-700 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-sm hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105"
                       >
                         Shop Now
                       </Link>

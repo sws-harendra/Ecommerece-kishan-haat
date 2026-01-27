@@ -138,7 +138,7 @@ export default function EcommerceNavbar() {
           <div className="flex items-center space-x-6">
             {/* Mobile Search */}
             <button className="md:hidden text-gray-600 hover:text-lime-500 transition-colors">
-              <Search className="w-6 h-6" />
+              <Search className="w-6 h-6" onClick={() => setIsMenuOpen(!isMenuOpen)} />
             </button>
 
             {/* Wishlist */}
@@ -268,7 +268,7 @@ export default function EcommerceNavbar() {
                 placeholder="Search products..."
                 className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"  />
             </div>
 
             {/* Mobile Categories */}

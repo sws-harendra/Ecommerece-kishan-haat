@@ -71,8 +71,8 @@ const TrendingProducts = () => {
     <div className=" sm:mx-4 text-center md:mx-10 my-8 relative">
       {/* <Heading title="🔥 Trending Products" /> */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 flex items-center justify-center gap-2">
-          🔥 Trending <span className="text-lime-600">Products</span>
+        <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 flex items-center justify-center gap-2">
+          🔥 Trending <span className="text-lime-600 ">Products</span>
         </h2>
         <p className="mt-3 text-gray-600">
           Discover best products that are trending right Now.

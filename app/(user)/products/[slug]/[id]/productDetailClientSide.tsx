@@ -8,6 +8,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Heading from "@/app/commonComponents/heading";
 import Loader from "@/app/commonComponents/loader";
+// import Description from "@/app/%28user%29/components/product/description";
+// import Description from "@/app/components/Description";
+
+
 import {
   BugPlayIcon,
   Share,
@@ -34,6 +38,7 @@ import { slugify } from "@/app/utils/slugify";
 import { toast } from "sonner";
 import { getFileType } from "@/app/utils/getMediaType";
 import { clienturl } from "@/app/contants";
+import Description from "@/app/(user)/components/Description";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -349,15 +354,13 @@ export default function ProductDetailClient({
               </div>
             </div>
 
-            {/* Description */}
-            <div className="space-y-1">
-              <h3 className="text-xl font-semibold text-gray-900">
-                Description
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-base">
-                {product.description}
-              </p>
-            </div>
+{/* Description */}
+<Description description={product.description} />
+{/* <Description description={"hello"} /> */}
+
+
+
+
 
             {/* Product Details Grid */}
             {((!selectedVariant && product?.stock < 10) ||
