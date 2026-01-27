@@ -330,7 +330,12 @@ export default function ProductDetailClient({
                       ? selectedVariant.price
                       : product.discountPrice}
                   </span>
-                  /{product?.varientValue}
+                  /
+                  {selectedVariant
+                    ? selectedVariant.options
+                        .map((option) => option.name)
+                        .join(", ")
+                    : product?.varientValue}
                 </div>
                 <span className="text-2xl text-gray-400 line-through">
                   ₹{product.originalPrice}
