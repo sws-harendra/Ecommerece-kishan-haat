@@ -57,23 +57,23 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <Link href={`/products/${slugify(name)}/${id}`}>
-      <div className="group relative bg-white rounded-xl sm:rounded-3xl shadow-sm sm:border sm:border-green-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:border-blue-200/50 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
+      <div className="group relative bg-white p-2 rounded-sm sm:rounded-sm shadow-sm sm:border sm:border-green-100 overflow-hidden transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/30">
         {/* Enhanced Discount Badge */}
         <div className="absolute top-4 left-4 z-20">
           <div className="relative">
-            <div className="bg-green-900 text-white px-3 py-1.5 rounded-2xl text-xs font-bold shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
+            <div className="bg-gradient-to-r from-[#E53935] via-[#D32F2F] to-[#B71C1C] text-white px-2 py-1.5 rounded-2xl text-xs font-bold shadow-lg transform -rotate-2 group-hover:rotate-0 transition-transform duration-500">
               <span className="sm:text-base text-[10px] flex items-center gap-1">
                 <Zap size={10} className="text-yellow-300" />
                 {discount}% OFF
               </span>
             </div>
             {/* Glowing effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500 via-emerald-500 to-lime-400 rounded-2xl blur-sm opacity-50 -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#E53935] via-[#D32F2F] to-[#B71C1C] rounded blur-sm opacity-50 -z-10" />
           </div>
         </div>
 
         {/* Enhanced Favorite Button */}
-        {/* <button
+        {/* <button 
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -92,7 +92,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </button> */}
 
         {/* Enhanced Product Image */}
-        <div className="relative h-32 sm:h-64 overflow-hidden bg-gray-50">
+        <div className="relative h-38 sm:h-94 overflow-hidden bg-gray-50">
           <img
             src={getImageUrl(image)}
             alt={name}
@@ -110,7 +110,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           )}
 
           {/* Enhanced Quick Action Buttons */}
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+          {/* <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
             <button className="bg-white/95 backdrop-blur-md p-3 rounded-2xl shadow-xl hover:bg-white hover:scale-110 transition-all duration-300 border border-gray-100/50 group/quick">
               <Eye
                 size={18}
@@ -139,17 +139,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 className="group-hover/add:rotate-12 transition-transform"
               />
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Enhanced Product Info */}
-        <div className="p-2 sm:p-5 space-y-0">
+        <div className="p-2 sm:p-3 space-y-0">
           {/* Product Name */}
           <div className="text-left  space-y-2">
-            <h3 className=" text-xs text-gray-900 group-hover:text-green-900 transition-colors duration-300 truncate sm:text-base leading-snug tracking-tight">
+            <h3 className=" text-xs text-gray-900 group-hover:text-[#E53935] transition-colors duration-300 truncate sm:text-base leading-snug tracking-tight">
               {name}
             </h3>
-
+            {/* <p className="text-sm mb-1"> Lorem ipsum dolor sit amet, consectetur adipisicing</p> */}
             {/* Free shipping indicator */}
           </div>
 
@@ -179,9 +179,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div> */}
 
           {/* Enhanced Price Section */}
-          <div className="flex  items-center sm:items-end justify-between ">
-            <div className="text-left sm:text-center">
-              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-center gap-1 sm:gap-3">
+          <div className=" ">
+            <div className="text-left ">
+              <div className="flex flex-col  sm:items-center  sm:flex-row  gap-1 sm:gap-3">
                 {/* Selling Price */}
                 <span className="text-lg sm:text-2xl font-extrabold text-gray-900 tracking-tight">
                   ₹{price}
@@ -200,7 +200,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
 
             {/* Enhanced Add to Cart Button */}
-            <button
+            <div className="flex justify-end">
+              <button
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -215,10 +216,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   }),
                 );
               }}
-              className="hidden md:flex bg-green-700 text-xs text-white sm:p-3 rounded-2xl hover:bg-green-800 transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
-            >
-              <ShoppingCart className="relative group-hover/cart:rotate-12 transition-transform duration-300" />
+              className=" bg-[#212326] mt-1 text-xs text-white px-4 py-1 sm:py-2 sm:px-14 rounded-sm sm:rounded-xl hover:bg-[#212320] transition-all duration-300 shadow-lg hover:shadow-xl group/cart transform hover:scale-105"
+            > Add to Cart
+              {/* <ShoppingCart className="relative group-hover/cart:rotate-12 transition-transform duration-300" /> */}
             </button>
+            </div>
           </div>
 
           {/* Payment Methods Indicator */}

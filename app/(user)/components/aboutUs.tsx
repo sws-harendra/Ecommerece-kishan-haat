@@ -5,52 +5,83 @@ import StaticPageRenderer from "./staticPageRenderer";
 
 const AboutUs = () => {
   return (
-    <section className="relative mx-auto my-5 px-6 max-w-[95%]">
+    <section className="relative py-20 px-6 lg:px-20 overflow-hidden">
+      
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 -z-10"></div>
+
+      {/* Decorative Blobs */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-purple-300 opacity-20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-pink-300 opacity-20 rounded-full blur-3xl"></div>
+
       {/* Section Header */}
-      <div className="text-center mb-14">
-        <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900">
-          About <span className="text-lime-600">Us</span>
+      <div className="text-center mb-16">
+        <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
+          About <span className="text-[#E53935]">{brandName}</span>
         </h2>
-        <p className="mt-3 text-gray-600 text-base lg:text-lg">
-          A little information about us.
+        <p className="mt-4 text-gray-600 text-lg max-w-2xl mx-auto">
+          Bringing handmade art closer to your heart.
         </p>
       </div>
 
-      {/* Content Card */}
-      <div className="bg-white shadow-lg rounded-3xl md:p-12 border border-gray-100 overflow-hidden relative">
-        {/* Decorative Background Gradient */}
-        <div className="absolute -top-10 -right-10 w-60 h-60 bg-gradient-to-r from-purple-200 via-pink-200 to-blue-200 rounded-full opacity-30 blur-3xl pointer-events-none"></div>
-        <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-gradient-to-r from-green-200 via-yellow-200 to-blue-200 rounded-full opacity-30 blur-3xl pointer-events-none"></div>
+      {/* Content Layout */}
+      <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        
+        {/* Left Content */}
+        <div className="space-y-6">
+          
+          {/* Badge */}
+          <div className="inline-block px-4 py-1 rounded-full bg-indigo-100 text-[#E53935] font-semibold text-lg shadow-sm">
+            Style That Defines You
+          </div>
 
-        {/* <StaticPageRenderer slug="aboutus" /> */}
-        <div className="relative space-y-6">
-          <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-            At{" "}
-            <span className="font-semibold text-gray-900 italic">
-              {brandName}
-            </span>
-            , we bring you{" "}
-            <span className="text-gray-900 font-medium">
-              handmade paintings
-            </span>
-            created by passionate artists. Each artwork is unique, crafted with
-            care, and made to add beauty, warmth, and personality to your space.
-            Our goal is to make authentic art accessible, affordable, and
-            timeless.
+          <h3 className="text-3xl font-bold text-gray-900 leading-snug">
+            Designed For The Way You Live
+          </h3>
+
+          <p className="text-gray-700 text-lg leading-relaxed">
+            At <span className="font-semibold">{brandName}</span>, we bring you
+            handmade paintings created by passionate artists. Each artwork is
+            carefully crafted to add warmth, personality, and timeless beauty
+            to your home.
           </p>
 
-          <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+          <p className="text-gray-700 text-lg leading-relaxed">
             We believe art should be{" "}
-            <span className="font-semibold text-indigo-600">
-              accessible, affordable, and timeless
-            </span>
-            . That’s why we ensure safe packaging, worldwide delivery, and the
-            promise that what you receive is as authentic as the artist’s
-            vision.
+            <span className="text-[#E53935] font-semibold">
+              accessible, affordable, and authentic
+            </span>. 
+            With safe packaging and worldwide delivery, we ensure your
+            masterpiece arrives just as the artist imagined.
           </p>
+
+          {/* Button */}
+          <button className="mt-4 px-6 py-3 bg-[#E53935] text-white rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition">
+            Explore Our Collection
+          </button>
+        </div>
+
+        {/* Right Image Section */}
+        <div className="relative">
+          
+          <div className="rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
+            <img
+              src="/about_img.jpg"   // replace with your image
+              alt="Handmade Art"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Floating Card */}
+          <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl">
+            <p className="text-sm font-semibold text-gray-900">500K+ Happy buyers</p>
+            <p className="text-xs text-gray-500">Worldwide Customers</p>
+          </div>
+
         </div>
       </div>
     </section>
+
   );
 };
 

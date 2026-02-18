@@ -8,13 +8,13 @@ import Heading from "@/app/commonComponents/heading";
 import ProductCard from "./productCard";
 import { discountPercentage } from "@/app/utils/discountCalculator";
 
-export default function HomeSections() {
-  const dispatch = useAppDispatch();
+export default function YouMayLike() {
+     const dispatch = useAppDispatch();
   const { sections, loading } = useAppSelector((s) => s.section);
 
   // carousel state
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 8; // number of products visible at once
+  const itemsPerPage = 4; // number of products visible at once
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,8 @@ export default function HomeSections() {
   if (loading) return <p>Loading sections...</p>;
 
   return (
-    <div className="space-y-14 mx-1 sm:mx-10 my-8">
+    <div className="space-y-14 mx-1 sm:mx-10 my-16">
+      <h2 className="text-center font-extrabold text-5xl  ">You May Also Like</h2>
       {sections.map((section) => {
         const totalPages = Math.ceil(section.Products.length / itemsPerPage);
         const currentPage = Math.floor(currentIndex / itemsPerPage);
@@ -38,10 +39,10 @@ export default function HomeSections() {
         return (
           <div key={section.id} className="relative">
             {/* Section Heading */}
-            <div className="text-center relative">
+            {/* <div className="text-center relative">
               <Heading title={section.title} />
               <p>{section.description}</p>
-            </div>
+            </div> */}
             <div
               className="relative overflow-hidden rounded-3xl  p-6"
               onMouseEnter={() => setIsHovered(true)}

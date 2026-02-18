@@ -110,9 +110,9 @@ export default function VideoProduct() {
   return (
     <div className="py-6 px-4 bg-gray-50">
       {/* Header */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 mt-8">
         <h2 className="text-3xl lg:text-4xl font-extrabold text-gray-900 flex items-center justify-center gap-2">
-          Featured <span className="text-lime-600">Products</span>
+          WATCH AND  <span className="">SHOP</span>
         </h2>
         <p className="mt-3 text-gray-600">
           Discover amazing products through immersive video experiences
@@ -175,13 +175,14 @@ export default function VideoProduct() {
                     className="w-full h-full object-cover"
                     loop
                     playsInline
+                    autoPlay
                   />
 
                   {/* Video Controls */}
                   <div className="absolute top-4 right-4 flex gap-2 z-20">
                     <button
                       onClick={(e) => toggleMute(video.id, e)}
-                      className="bg-black bg-opacity-60 text-lime-500 p-2 rounded-full hover:bg-opacity-80 transition-all duration-200"
+                      className="bg-black bg-opacity-60 text-[#E53935] p-2 rounded-full hover:bg-opacity-80 transition-all duration-200"
                     >
                       {unmutedId === video.id ? (
                         <Volume2 className="h-4 w-4" />
@@ -189,7 +190,7 @@ export default function VideoProduct() {
                         <VolumeX className="h-4 w-4" />
                       )}
                     </button>
-                    <button
+                    {/* <button
                       onClick={(e) => togglePlayPause(video.id, e)}
                       className="bg-black bg-opacity-60 text-lime-500 p-2 rounded-full hover:bg-opacity-80 transition-all duration-200"
                     >
@@ -198,7 +199,7 @@ export default function VideoProduct() {
                       ) : (
                         <Play className="h-4 w-4" />
                       )}
-                    </button>
+                    </button> */}
                   </div>
 
                   {/* Playing Indicator */}
@@ -238,7 +239,7 @@ export default function VideoProduct() {
                           video.Product?.name || "product"
                         )}/${video.productId}`}
                         onClick={handleShopNowClick}
-                        className="bg-gradient-to-r from-green-700 via-green-600 to-lime-500 hover:from-green-700 hover:via-green-700 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-sm hover:bg-gray-100 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        className="bg-red-500 hover:bg-[#E53935] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 text-sm  shadow-lg hover:shadow-xl transform hover:scale-105"
                       >
                         Shop Now
                       </Link>

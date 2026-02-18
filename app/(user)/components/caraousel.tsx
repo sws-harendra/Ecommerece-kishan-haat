@@ -72,6 +72,8 @@ export default function BannerCarousel() {
     );
   }
 
+
+
   return (
     <div className=" max-w-[100%] mx-auto">
       {/* Floating carousel wrapper */}
@@ -101,6 +103,7 @@ export default function BannerCarousel() {
               >
                 <Image
                   src={getImageUrl(banner.imageUrl)}
+                  // src={banner.imageUrl}
                   alt={banner.title}
                   fill
                   className={`w-full h-full object-cover  ${
@@ -112,7 +115,7 @@ export default function BannerCarousel() {
                 />
 
                 {!imageLoaded[index] && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-700 via-green-600 to-lime-500 animate-pulse flex items-center justify-center">
+                  <div className="absolute inset-0  animate-pulse flex items-center justify-center">
                     <div className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                       <div
@@ -135,7 +138,7 @@ export default function BannerCarousel() {
 
                 {/* Enhanced text content */}
                 <div className="absolute inset-0 flex items-center justify-start z-20">
-                  <div className="text-white px-8 sm:px-12 md:px-16 lg:px-20 max-w-3xl transform transition-all duration-700 group-hover:translate-x-2">
+                  <div className="text-white px-8 sm:px-12 md:px-16 lg:px-20 max-w-5xl transform transition-all duration-700 group-hover:translate-x-2">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-4 leading-tight drop-shadow-xl transform transition-all duration-500 group-hover:scale-105">
                       {banner.title}
                     </h2>
@@ -145,7 +148,7 @@ export default function BannerCarousel() {
                       </p>
                     )}
                     {banner.ctaText && (
-                      <button className="bg-gradient-to-r from-green-700 via-green-600 to-lime-500 text-gray-900 hover:from-green-700 hover:via-green-700 hover:to-green-700 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold text-sm sm:text-base md:text-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl flex items-center space-x-3 group/btn">
+                      <button className="bg-[#E53935] text-white hover:from-green-700 hover:via-green-700 hover:to-green-700 px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold text-sm sm:text-base md:text-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl flex items-center space-x-3 group/btn">
                         <span className="drop-shadow-sm">{banner.ctaText}</span>
                         <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-x-2 group-hover/btn:rotate-12 transition-all duration-300" />
                       </button>
@@ -159,13 +162,13 @@ export default function BannerCarousel() {
           {/* Enhanced navigation arrows */}
           <button
             onClick={prevSlide}
-            className="hidden md:flex absolute top-1/2 left-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime-600/10 z-30 group/nav"
+            className="hidden md:flex absolute top-1/2 left-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-[#E53935] rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-[#E53935]/10 z-30 group/nav"
           >
             <ChevronLeft className="w-6 h-6 group-hover/nav:-translate-x-0.5 transition-transform" />
           </button>
           <button
             onClick={nextSlide}
-            className="hidden md:flex absolute top-1/2 right-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime-600/10 z-30 group/nav"
+            className="hidden md:flex absolute top-1/2 right-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-[#E53935] rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-[#E53935]/10 z-30 group/nav"
           >
             <ChevronRight className="w-6 h-6 group-hover/nav:translate-x-0.5 transition-transform" />
           </button>
@@ -173,7 +176,7 @@ export default function BannerCarousel() {
           {/* Enhanced play/pause button */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="hidden md:flex absolute bottom-6 left-6 bg-white/20 hover:bg-white/30 backdrop-blur-md text-lime-500 rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-lime/20 z-30 group/play"
+            className="hidden md:flex absolute bottom-6 left-6 bg-white/20 hover:bg-white/30 backdrop-blur-md text-[#E53935] rounded-2xl p-3 transition-all duration-300 hover:scale-110 shadow-xl border border-[#E53935]/20 z-30 group/play"
           >
             {isPlaying ? (
               <Pause className="w-5 h-5 group-hover/play:scale-110 transition-transform" />
@@ -183,7 +186,7 @@ export default function BannerCarousel() {
           </button>
 
           {/* Enhanced counter */}
-          <div className="hidden md:flex absolute bottom-6 right-6 bg-white/20 backdrop-blur-md text-lime-500 px-4 py-2 rounded-2xl text-sm font-semibold shadow-xl border border-white/20 z-30">
+          <div className="hidden md:flex absolute bottom-6 right-6 bg-white/20 backdrop-blur-md text-[#E53935] px-4 py-2 rounded-2xl text-sm font-semibold shadow-xl border border-white/20 z-30">
             <span className="drop-shadow-sm">
               {currentSlide + 1} / {banners.length}
             </span>
@@ -197,7 +200,7 @@ export default function BannerCarousel() {
                 onClick={() => goToSlide(index)}
                 className={`transition-all duration-300 rounded-full border-2 ${
                   currentSlide === index
-                    ? "w-8 h-3 bg-lime-600 border-white shadow-lg"
+                    ? "w-8 h-3 bg-[#E53935] border-white shadow-lg"
                     : "w-3 h-3 bg-white/50 border-white/50 hover:bg-white/70 hover:scale-125"
                 }`}
               />

@@ -39,6 +39,7 @@ import { toast } from "sonner";
 import { getFileType } from "@/app/utils/getMediaType";
 import { clienturl } from "@/app/contants";
 import Description from "@/app/(user)/components/Description";
+import YouMayLike from "@/app/(user)/components/YouMayLike";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -112,21 +113,21 @@ export default function ProductDetailClient({
           <nav className="flex flex-wrap items-center space-x-1 text-[4px] sm:text-[8px] text-gray-500">
             <Link
               href={"/"}
-              className="hover:text-green-600 cursor-pointer transition-colors"
+              className="hover:text-[#E53935] cursor-pointer transition-colors"
             >
               <Heading title="Home" />
             </Link>
             <Heading title="/" />
             <Link
               href={"/products"}
-              className="hover:text-green-600 cursor-pointer transition-colors"
+              className="hover:text-[#E53935] cursor-pointer transition-colors"
             >
               <Heading title="Products" />
             </Link>{" "}
             <Heading title="/" />
             <Link
               href={`/products?search=${product?.categoryId}`}
-              className="hover:text-green-600 cursor-pointer transition-colors"
+              className="hover:text-[#E53935] cursor-pointer transition-colors"
             >
               <Heading title={product?.Category?.name} />
             </Link>
@@ -276,7 +277,7 @@ export default function ProductDetailClient({
             {/* Header */}
             <div className="space-y-4">
               <div className=" flex flex-row justify-between ">
-                <span className=" bg-gradient-to-r from-green-100 to-lime-100 text-green-800 text-sm font-semibold px-3 py-2 rounded-full">
+                <span className=" bg-gradient-to-r from-green-100 to-lime-100 text-[#E53935] text-sm font-semibold px-3 py-2 rounded-full">
                   {product.Category?.name || "Uncategorized"}
                 </span>
                 <div className="relative inline-block">
@@ -324,7 +325,7 @@ export default function ProductDetailClient({
             <div className="space-y-1 ">
               <div className="flex items-center space-x-4">
                 <div>
-                  <span className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  <span className="text-3xl font-bold bg-[#E53935] bg-clip-text text-transparent">
                     ₹
                     {selectedVariant
                       ? selectedVariant.price
@@ -359,9 +360,9 @@ export default function ProductDetailClient({
               </div>
             </div>
 
-{/* Description */}
-<Description description={product.description} />
-{/* <Description description={"hello"} /> */}
+            {/* Description */}
+            <Description description={product.description} />
+            {/* <Description description={"hello"} /> */}
 
 
 
@@ -376,7 +377,7 @@ export default function ProductDetailClient({
                     Stock Available
                   </h4>
                   <div className="flex items-center space-x-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-[#E53935] rounded-full animate-pulse"></div>
                     <span className="text-gray-700 font-medium">
                       {selectedVariant ? selectedVariant.stock : product.stock}{" "}
                       units
@@ -413,7 +414,7 @@ export default function ProductDetailClient({
                   );
                   router.push("/cart");
                 }}
-                className="w-full group relative bg-gradient-to-r from-green-600 to-lime-600 hover:from-green-600 hover:to-green-600 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
+                className="w-full group relative bg-[#E53935] hover:bg-red-600 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
               >
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
                 <div className="relative flex items-center justify-center space-x-2">
@@ -499,6 +500,10 @@ export default function ProductDetailClient({
           </div>
         </div>
       </div>
+
+      <YouMayLike/>
     </div>
+
+    
   );
 }

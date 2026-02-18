@@ -5,25 +5,28 @@ import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className=" bg-green-700 text-green-50 ">
+    <footer className=" bg-[#E53935] text-white  ">
       <div className="max-w-7xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand */}
         <div>
-          <h2 className="text-3xl font-bold text-white">{brandName}</h2>
-          <p className="mt-4 text-sm text-green-200 max-w-xs">
+          <h2 className="text-3xl font-bold text-white">
+            {/* {brandName} */}
+            𝒇𝒂𝒔𝒉𝒊𝒐𝒏
+            </h2>
+          <p className="mt-4 text-sm  max-w-xs">
             Your trusted destination for fresh farm products directly from
             farmers.
           </p>
 
           {/* Social Icons */}
           <div className="flex gap-4 mt-6">
-            <a className="w-9 h-9 rounded-full text-green-900 flex items-center justify-center bg-white hover:text-blue-600 transition">
+            <a className="w-9 h-9 rounded-full text-black flex items-center justify-center bg-white hover:text-blue-600 transition">
               <Facebook size={16} />
             </a>
-            <a className="w-9 h-9 rounded-full text-green-900 flex items-center justify-center bg-white hover:text-pink-600 transition">
+            <a className="w-9 h-9 rounded-full text-black flex items-center justify-center bg-white hover:text-pink-600 transition">
               <Instagram size={16} />
             </a>
-            <a className="w-9 h-9 rounded-full text-green-900 flex items-center justify-center bg-white hover:text-blue-600 transition">
+            <a className="w-9 h-9 rounded-full text-black flex items-center justify-center bg-white hover:text-blue-600 transition">
               <Linkedin size={16} />
             </a>
           </div>
@@ -31,27 +34,27 @@ export default function Footer() {
 
         {/* Shop */}
         <div>
-          <h3 className="text-sm font-semibold uppercase mb-4 text-lime-300">
+          <h3 className="text-sm font-semibold uppercase mb-4 text-white">
             Shop
           </h3>
-          <ul className="space-y-2 text-sm text-green-200">
+          <ul className="space-y-2 text-sm text-white">
             <li>
-              <Link href="/products" className="hover:text-lime-300">
+              <Link href="/products" className="hover:text-white">
                 All Products
               </Link>
             </li>
             <li>
-              <Link href="/products" className="hover:text-lime-300">
+              <Link href="/products" className="hover:text-white">
                 Categories
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-lime-300">
+              <Link href="#" className="hover:text-white">
                 Offers
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-lime-300">
+              <Link href="#" className="hover:text-white">
                 New Arrivals
               </Link>
             </li>
@@ -60,22 +63,22 @@ export default function Footer() {
 
         {/* Company */}
         <div>
-          <h3 className="text-sm font-semibold uppercase mb-4 text-lime-300">
+          <h3 className="text-sm font-semibold uppercase mb-4 text-white">
             Company
           </h3>
-          <ul className="space-y-2 text-sm text-green-200">
+          <ul className="space-y-2 text-sm text-white">
             <li>
-              <Link href="/refund-policy" className="hover:text-lime-300">
+              <Link href="/refund-policy" className="hover:text-white">
                 Refund Policy{" "}
               </Link>
             </li>
             <li>
-              <Link href="terms&conditions" className="hover:text-lime-300">
+              <Link href="terms&conditions" className="hover:text-white">
                 Terms & Conditions
               </Link>
             </li>
             <li>
-              <Link href="privacy-policy" className="hover:text-lime-300">
+              <Link href="privacy-policy" className="hover:text-white">
                 Privacy Policy
               </Link>
             </li>
@@ -84,10 +87,10 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h3 className="text-sm font-semibold uppercase mb-4 text-lime-300">
+          <h3 className="text-sm font-semibold uppercase mb-4 text-white">
             Contact
           </h3>
-          <ul className="space-y-3 text-sm text-green-200">
+          <ul className="space-y-3 text-sm text-white">
             <li className="flex items-center gap-2">
               <Mail size={16} /> info@yourstore.com
             </li>
@@ -99,9 +102,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-green-700 py-4 text-center text-sm text-green-200">
+      <div className="border-t border-white py-4 text-center text-sm text-white">
         © {new Date().getFullYear()}{" "}
-        <span className="font-semibold text-lime-300">{brandName}</span>. All
+        <span className="font-semibold text-white">{brandName}</span>. All
         rights reserved.
         <span className="font-bold"> Design by Startup Web Support</span>
       </div>
