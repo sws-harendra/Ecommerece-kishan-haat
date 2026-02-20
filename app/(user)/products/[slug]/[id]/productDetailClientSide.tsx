@@ -22,7 +22,7 @@ import {
   Copy,
 } from "lucide-react";
 import { addToCart } from "@/app/lib/store/features/cartSlice";
-import { useAppDispatch } from "@/app/lib/store/store";
+import { useAppDispatch, useAppSelector } from "@/app/lib/store/store";
 import { useRouter } from "next/navigation";
 import {
   FacebookShareButton,
@@ -40,6 +40,8 @@ import { getFileType } from "@/app/utils/getMediaType";
 import { clienturl } from "@/app/contants";
 import Description from "@/app/(user)/components/Description";
 import YouMayLike from "@/app/(user)/components/YouMayLike";
+import ProductCard from "@/app/(user)/components/productCard";
+import { fetchRelatedProducts } from "@/app/lib/store/features/relatedProductSlice";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -57,7 +59,24 @@ export default function ProductDetailClient({
 
   const [mounted, setMounted] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
+
   const dispatch = useAppDispatch(); // ✅ typed dispatch
+  
+  // related products
+  const { products, loading } = useAppSelector(
+    (state) => state.relatedProducts
+  );
+
+  useEffect(() => {
+    if (product?.id) {
+      dispatch(fetchRelatedProducts(product.id));
+    }
+  }, [product?.id, dispatch]);
+  console.log("Product ID:", product?.id);
+  console.log("Related products state:", products);
+
+
+
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -141,104 +160,73 @@ export default function ProductDetailClient({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Product Images Section */}
           <div className="space-y-6 animate-fade-in-left">
-            {/* Main Image with Hover Effect */}
-            <div className="group relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/5 group-hover:to-black/10 transition-all duration-500"></div>
-              {displayImages && displayImages.length > 0 ? (
-                (() => {
-                  const file = displayImages[selectedImage];
+            {displayImages && displayImages.length > 0 && (
+
+            displayImages.length === 1 ? (
+
+              /* ===== SINGLE IMAGE (BIG) ===== */
+              <div className="group relative h-[400px] lg:h-[550px] overflow-hidden rounded-2xl bg-gray-100 shadow-xl">
+                <Image
+                  src={getImageUrl(displayImages[0])}
+                  alt={product.name}
+                  fill
+                  unoptimized
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  priority
+                />
+              </div>
+
+            ) : (
+
+              /* ===== MULTIPLE IMAGES (2x2 GRID) ===== */
+              <div className="grid grid-cols-2 gap-2 md:gap-4">
+                {displayImages.slice(0, 4).map((file, index) => {
                   const fileType = getFileType(file);
 
-                  if (fileType === "image") {
-                    return (
-                      <Image
-                        src={getImageUrl(file)}
-                        alt={product.name}
-                        fill
-                        unoptimized
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        priority
-                      />
-                    );
-                  }
-
-                  if (fileType === "video") {
-                    return (
-                      <video
-                        src={getImageUrl(file)}
-                        className="w-full h-full object-cover rounded-xl"
-                        controls
-                        autoPlay
-                        muted
-                        loop
-                      />
-                    );
-                  }
-
                   return (
-                    <div className="flex items-center justify-center h-full text-gray-400">
-                      <div className="text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
-                          <svg
-                            className="w-8 h-8"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <p>No Preview Available</p>
-                      </div>
+                    <div
+                      key={index}
+                      className="group relative h-[200px] md:h-[360px] overflow-hidden rounded-xl bg-gray-100 cursor-pointer"
+                      onClick={() => setSelectedImage(index)}
+                    >
+                      {fileType === "image" ? (
+                        <Image
+                          src={getImageUrl(file)}
+                          alt={`${product.name}-${index}`}
+                          fill
+                          unoptimized
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      ) : fileType === "video" ? (
+                        <video
+                          src={getImageUrl(file)}
+                          className="w-full h-full object-cover"
+                          muted
+                        />
+                      ) : null}
+
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
                     </div>
                   );
-                })()
-              ) : (
-                <div className="flex items-center justify-center h-full text-gray-400">
-                  <div className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gray-200 rounded-full flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <p>No Media Available</p>
-                  </div>
-                </div>
-              )}
-              {/* Floating Discount Badge */}
-              <div className="absolute top-4 right-4 transform rotate-12">
-                <div className="bg-gradient-to-r from-lime-600 via-green-600 to-emerald-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse">
-                  {discountPercentage(
-                    parseFloat(product.originalPrice),
-                    parseFloat(product.discountPrice),
-                  )}
-                  % OFF
-                </div>
+                })}
               </div>
-            </div>
+
+            )
+          )}
+
+
 
             {/* Thumbnail Gallery */}
 
-            {displayImages && displayImages.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
+            {/* {displayImages && displayImages.length > 1 && (
+              <div className="grid grid-cols-4 gap-2 mt-3">
                 {displayImages.slice(0, 8).map((file, index) => {
                   const fileType = getFileType(file);
 
                   return (
                     <div
                       key={index}
-                      className={`group aspect-square relative overflow-hidden rounded-xl bg-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in-up ${
+                      className={`group aspect-square  relative overflow-hidden rounded-xl bg-gray-100 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-lg animate-fade-in-up ${
                         selectedImage === index ? "ring-2 ring-green-500" : ""
                       }`}
                       style={{ animationDelay: `${index * 100}ms` }}
@@ -269,14 +257,14 @@ export default function ProductDetailClient({
                   );
                 })}
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Product Information Section */}
           <div className="space-y-5 animate-fade-in-right">
             {/* Header */}
             <div className="space-y-4">
-              <div className=" flex flex-row justify-between ">
+              <div className="flex flex-row justify-between ">
                 <span className=" bg-gradient-to-r from-green-100 to-lime-100 text-[#E53935] text-sm font-semibold px-3 py-2 rounded-full">
                   {product.Category?.name || "Uncategorized"}
                 </span>
@@ -325,7 +313,7 @@ export default function ProductDetailClient({
             <div className="space-y-1 ">
               <div className="flex items-center space-x-4">
                 <div>
-                  <span className="text-3xl font-bold bg-[#E53935] bg-clip-text text-transparent">
+                  <span className="text-3xl font-bold text-black bg-clip-text ">
                     ₹
                     {selectedVariant
                       ? selectedVariant.price
@@ -338,7 +326,7 @@ export default function ProductDetailClient({
                         .join(", ")
                     : product?.varientValue}
                 </div>
-                <span className="text-2xl text-gray-400 line-through">
+                <span className="text-2xl text-[#E53935] line-through">
                   ₹{product.originalPrice}
                 </span>
               </div>
@@ -360,12 +348,79 @@ export default function ProductDetailClient({
               </div>
             </div>
 
+
+            {/* Action Buttons */}
+            <div className="space-y-4 mt-7  ">
+              <div className="flex flex-col gap-4 md:flex-row md:gap-12 md:justify-center md:items-center">
+                <button
+                  onClick={async () => {
+                    await dispatch(
+                      addToCart({
+                        id: selectedVariant
+                          ? `${product.id}-${selectedVariant.id}`
+                          : product.id,
+                        name: product.name,
+                        price: parseFloat(
+                          selectedVariant
+                            ? selectedVariant.price
+                            : product.discountPrice,
+                        ),
+                        quantity: 1,
+                        imageUrl: displayImages?.[0] || "",
+                        paymentMethods: product.paymentMethods,
+                        variant: selectedVariant
+                          ? selectedVariant.options
+                              .map((opt) => `${opt.category.name}: ${opt.value}`)
+                              .join(", ")
+                          : undefined,
+                      }),
+                    );
+                    router.push("/cart");
+                  }}
+                  className=" group relative bg-[#E53935] hover:bg-red-600 text-white font-semibold py-4 px-16  rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
+                  <div className="relative flex items-center justify-center space-x-2">
+                    <Wallet />
+                    <span>Buy Now</span>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => {
+                    dispatch(
+                      addToCart({
+                        id: product.id,
+                        name: product.name,
+                        quantity: 1,
+                        // imageUrl: product.images?.[0] || "",
+                        paymentMethods: product.paymentMethods,
+                        price: parseFloat(
+                          selectedVariant
+                            ? selectedVariant.price
+                            : product.discountPrice,
+                        ),
+
+                        imageUrl: displayImages?.[0] || "",
+                        variantId: selectedVariant?.id, // e.g. 31
+                        variantName: selectedVariant?.options
+                          .map((opt) => `${opt.category.name}: ${opt.value}`)
+                          .join(", "), // "Dimension: 14*15"
+                      }),
+                    );
+                  }}
+                  className=" group bg-white/80 backdrop-blur-sm hover:bg-white border-2 border-gray-200 hover:border-red-300 text-gray-700 hover:text-red-600 font-semibold py-4 px-16 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                >
+                  <div className="flex items-center justify-center space-x-2">
+                    <ShoppingCart /> <span>Add to cart</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+
             {/* Description */}
             <Description description={product.description} />
-            {/* <Description description={"hello"} /> */}
-
-
-
 
 
             {/* Product Details Grid */}
@@ -387,72 +442,7 @@ export default function ProductDetailClient({
               </div>
             )}
 
-            {/* Action Buttons */}
-            <div className="space-y-4 pt-8">
-              <button
-                onClick={async () => {
-                  await dispatch(
-                    addToCart({
-                      id: selectedVariant
-                        ? `${product.id}-${selectedVariant.id}`
-                        : product.id,
-                      name: product.name,
-                      price: parseFloat(
-                        selectedVariant
-                          ? selectedVariant.price
-                          : product.discountPrice,
-                      ),
-                      quantity: 1,
-                      imageUrl: displayImages?.[0] || "",
-                      paymentMethods: product.paymentMethods,
-                      variant: selectedVariant
-                        ? selectedVariant.options
-                            .map((opt) => `${opt.category.name}: ${opt.value}`)
-                            .join(", ")
-                        : undefined,
-                    }),
-                  );
-                  router.push("/cart");
-                }}
-                className="w-full group relative bg-[#E53935] hover:bg-red-600 text-white font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
-                <div className="relative flex items-center justify-center space-x-2">
-                  <Wallet />
-                  <span>Buy Now</span>
-                </div>
-              </button>
-
-              <button
-                onClick={() => {
-                  dispatch(
-                    addToCart({
-                      id: product.id,
-                      name: product.name,
-                      quantity: 1,
-                      // imageUrl: product.images?.[0] || "",
-                      paymentMethods: product.paymentMethods,
-                      price: parseFloat(
-                        selectedVariant
-                          ? selectedVariant.price
-                          : product.discountPrice,
-                      ),
-
-                      imageUrl: displayImages?.[0] || "",
-                      variantId: selectedVariant?.id, // e.g. 31
-                      variantName: selectedVariant?.options
-                        .map((opt) => `${opt.category.name}: ${opt.value}`)
-                        .join(", "), // "Dimension: 14*15"
-                    }),
-                  );
-                }}
-                className="w-full group bg-white/80 backdrop-blur-sm hover:bg-white border-2 border-gray-200 hover:border-green-300 text-gray-700 hover:text-green-600 font-semibold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-              >
-                <div className="flex items-center justify-center space-x-2">
-                  <ShoppingCart /> <span>Add to cart</span>
-                </div>
-              </button>
-            </div>
+            
 
             {/* Variants Section */}
             {product?.ProductVariants && product.ProductVariants.length > 0 && (
@@ -502,6 +492,33 @@ export default function ProductDetailClient({
       </div>
 
       <YouMayLike/>
+
+      {/* {products.length > 0 && 
+      (
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold mb-6">Similar Products</h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {products.map((item: any) => (
+              
+              <ProductCard
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                image={item.images?.[0]}
+                price={item.discountPrice}
+                originalPrice={item.originalPrice}
+                rating={item.ratings ?? 0}
+                discount={item.discountPercentage}
+                paymentMethods={item.paymentMethods}
+              />
+
+            ))}
+          </div>
+        </div>
+      )
+      } */}
+
     </div>
 
     

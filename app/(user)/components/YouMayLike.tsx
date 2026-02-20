@@ -24,8 +24,8 @@ export default function YouMayLike() {
   if (loading) return <p>Loading sections...</p>;
 
   return (
-    <div className="space-y-14 mx-1 sm:mx-10 my-16">
-      <h2 className="text-center font-extrabold text-5xl  ">You May Also Like</h2>
+    <div className="md:space-y-14 mx-1 sm:mx-10 my-8 md:my-16">
+      <h2 className="text-center font-extrabold text-xl md:text-3xl lg:text-5xl  ">You May Also Like</h2>
       {sections.map((section) => {
         const totalPages = Math.ceil(section.Products.length / itemsPerPage);
         const currentPage = Math.floor(currentIndex / itemsPerPage);

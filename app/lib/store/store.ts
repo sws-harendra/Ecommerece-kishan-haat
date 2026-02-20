@@ -16,8 +16,11 @@ import blogReducer from "./features/blogSlice";
 import mediaCoveragesReducer from "./features/mediaCoverageSlice";
 import testimonialReducer from "./features/testimonialSlice";
 import varientReducer from "./features/variantSlice";
+
+import relatedProductReducer from "./features/relatedProductSlice";
 export const store = configureStore({
   reducer: {
+    relatedProducts: relatedProductReducer,
     auth: authReducer,
     product: productReducer,
     banners: bannerReducer,

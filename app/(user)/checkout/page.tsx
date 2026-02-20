@@ -465,7 +465,7 @@ const CheckoutPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center">
         <div className="bg-white rounded-3xl shadow-2xl p-10 max-w-lg w-full border border-gray-100 text-center">
           <div className="w-24 h-24 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <AlertCircle className="w-12 h-12 text-green-600" />
+            <AlertCircle className="w-12 h-12 text-[#ED1C24]" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Your cart is empty
@@ -474,7 +474,7 @@ const CheckoutPage = () => {
             Add items to your cart before proceeding to checkout.
           </p>
           <Link href="/">
-            <button className="bg-gradient-to-r from-green-600 to-lime-600 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            <button className="bg-[#ED1C24] text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300">
               Continue Shopping
             </button>
           </Link>
@@ -488,26 +488,26 @@ const CheckoutPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center p-6">
         <div className="bg-white rounded-3xl shadow-2xl p-10 max-w-lg w-full border border-gray-100 text-center">
           <div className="w-24 h-24 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-12 h-12 text-green-600" />
+            <CheckCircle className="w-12 h-12 text-[#ED1C24]" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Order Placed Successfully!
           </h2>
           <p className="text-gray-600 mb-2">
             Your order ID is:{" "}
-            <span className="font-bold text-green-600">{orderId}</span>
+            <span className="font-bold text-[#ED1C24]">{orderId}</span>
           </p>
           <p className="text-gray-600 mb-8">
             You will receive a confirmation email shortly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/">
-              <button className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <button className="bg-[#ED1C24] text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                 Continue Shopping
               </button>
             </Link>
             <Link href="/orderhistory">
-              <button className="bg-white text-green-600 border-2 border-green-200 px-8 py-4 rounded-2xl font-semibold hover:bg-green-50 transition-all duration-300">
+              <button className="bg-white text-[#ED1C24] border-2 border-green-200 px-8 py-4 rounded-2xl font-semibold hover:bg-green-50 transition-all duration-300">
                 View Order Details
               </button>
             </Link>
@@ -523,13 +523,13 @@ const CheckoutPage = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <Link href="/cart">
-            <button className="flex items-center text-green-600 font-semibold hover:text-lime-500 transition-colors bg-white px-6 py-3 rounded-2xl shadow-md hover:shadow-lg">
+            <button className="flex items-center text-[#ED1C24] font-semibold hover:text-red-600 transition-colors bg-white px-6 py-3 rounded-2xl shadow-md hover:shadow-lg">
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Cart
             </button>
           </Link>
           <div className="text-sm text-gray-600 bg-white px-6 py-3 rounded-2xl shadow-md">
-            <Lock className="w-4 h-4 inline mr-2 text-green-500" />
+            <Lock className="w-4 h-4 inline mr-2 text-[#ED1C24]" />
             Secure SSL Encrypted Checkout
           </div>
         </div>
@@ -559,9 +559,9 @@ const CheckoutPage = () => {
                       <div
                         className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
                           activeStep >= step
-                            ? "bg-gradient-to-r from-green-600 to-lime-600 text-white shadow-lg"
+                            ? "bg-[#ED1C24] text-white shadow-lg"
                             : activeStep > step
-                              ? "bg-green-500 text-white"
+                              ? "bg-[#ED1C24] text-white"
                               : "bg-gray-200 text-gray-500"
                         }`}
                       >
@@ -574,7 +574,7 @@ const CheckoutPage = () => {
                       <span
                         className={`mt-3 text-sm font-semibold ${
                           activeStep === step
-                            ? "text-green-600"
+                            ? "text-[#ED1C24]"
                             : "text-gray-600"
                         }`}
                       >
@@ -586,9 +586,9 @@ const CheckoutPage = () => {
                         <div
                           className={`h-2 rounded-full transition-all duration-500 ${
                             activeStep > step
-                              ? "bg-gradient-to-r from-green-500 to-green-600"
+                              ? "bg-gradient-to-r from-[#ED1C24] to-red-500"
                               : activeStep === step
-                                ? "bg-gradient-to-r from-green-600 to-lime-600"
+                                ? "bg-gradient-to-r from-[#ED1C24] to-red-500"
                                 : "bg-gray-200"
                           }`}
                         ></div>
@@ -604,7 +604,7 @@ const CheckoutPage = () => {
               <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 border border-gray-100">
                 <div className="flex items-center mb-8">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mr-4">
-                    <User className="w-6 h-6 text-green-600" />
+                    <User className="w-6 h-6 text-[#ED1C24]" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900">
                     Contact Information
@@ -621,7 +621,7 @@ const CheckoutPage = () => {
                       name="fullname"
                       value={formData.fullname}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                      className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                         errors.fullname
                           ? "border-red-400 bg-red-50"
                           : "border-gray-200 hover:border-gray-300"
@@ -643,7 +643,7 @@ const CheckoutPage = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                      className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                         errors.email
                           ? "border-red-400 bg-red-50"
                           : "border-gray-200 hover:border-gray-300"
@@ -690,7 +690,7 @@ const CheckoutPage = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                    className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                       errors.phone
                         ? "border-red-400 bg-red-50"
                         : "border-gray-200 hover:border-gray-300"
@@ -712,7 +712,7 @@ const CheckoutPage = () => {
                     name="secondaryNumber"
                     value={formData.secondaryNumber}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                    className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                       errors.phone
                         ? "border-red-400 bg-red-50"
                         : "border-gray-200 hover:border-gray-300"
@@ -734,7 +734,7 @@ const CheckoutPage = () => {
                         router.push("/authentication/login"); // go to login if not logged in
                       }
                     }}
-                    className="bg-gradient-to-r from-green-600 to-lime-600 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    className="bg-[#ED1C24] text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                   >
                     Continue to Shipping
                   </button>
@@ -747,7 +747,7 @@ const CheckoutPage = () => {
               <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 border border-gray-100">
                 <div className="flex items-center mb-8">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full flex items-center justify-center mr-4">
-                    <MapPin className="w-6 h-6 text-green-600" />
+                    <MapPin className="w-6 h-6 text-[#ED1C24]" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900">
                     Shipping Address
@@ -767,7 +767,7 @@ const CheckoutPage = () => {
                             key={address.id}
                             className={`p-6 border-2 rounded-2xl cursor-pointer transition-all duration-200 ${
                               formData.selectedAddressId === address.id
-                                ? "border-green-500 bg-blue-50 shadow-lg"
+                                ? "border-[#ED1C24] bg-blue-50 shadow-lg"
                                 : "border-gray-200 hover:border-gray-300 hover:shadow-md"
                             }`}
                             onClick={() =>
@@ -780,11 +780,11 @@ const CheckoutPage = () => {
                             <div className="flex items-center justify-between mb-2">
                               <div className="flex items-center">
                                 {address.addressType === "home" ? (
-                                  <Home className="w-5 h-5 mr-2 text-green-600" />
+                                  <Home className="w-5 h-5 mr-2 text-[#ED1C24]" />
                                 ) : address.addressType === "work" ? (
-                                  <Building2 className="w-5 h-5 mr-2 text-green-600" />
+                                  <Building2 className="w-5 h-5 mr-2 text-[#ED1C24]" />
                                 ) : (
-                                  <MapPin className="w-5 h-5 mr-2 text-green-600" />
+                                  <MapPin className="w-5 h-5 mr-2 text-[#ED1C24]" />
                                 )}
                                 <span className="font-semibold text-gray-800">
                                   {address.addressType}
@@ -805,7 +805,7 @@ const CheckoutPage = () => {
                     <div className="text-center mb-8">
                       <button
                         onClick={() => setShowAddressForm(true)}
-                        className="bg-white text-green-600 border-2 border-green-200 px-6 py-3 rounded-2xl font-semibold hover:bg-green-50 transition-all duration-200 flex items-center mx-auto"
+                        className="bg-white text-[#ED1C24] border-2 border-green-200 px-6 py-3 rounded-2xl font-semibold hover:bg-green-50 transition-all duration-200 flex items-center mx-auto"
                       >
                         <Plus className="w-5 h-5 mr-2" />
                         Add New Address
@@ -838,7 +838,7 @@ const CheckoutPage = () => {
                           name="newAddress.type"
                           value={formData.newAddress.type}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200"
+                          className="w-full px-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200"
                         >
                           <option value="home">Home</option>
                           <option value="work">Work</option>
@@ -855,7 +855,7 @@ const CheckoutPage = () => {
                           value={formData.newAddress.address1}
                           onChange={handleInputChange}
                           placeholder="Enter your street address"
-                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                             errors["newAddress.address1"]
                               ? "border-red-400 bg-red-50"
                               : "border-gray-200 hover:border-gray-300"
@@ -883,7 +883,7 @@ const CheckoutPage = () => {
                         value={formData.newAddress.landmark}
                         onChange={handleInputChange}
                         placeholder="Landmark."
-                        className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                        className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                           errors["newAddress.landmark"]
                             ? "border-red-400 bg-red-50"
                             : "border-gray-200 hover:border-gray-300"
@@ -905,7 +905,7 @@ const CheckoutPage = () => {
                         value={formData.newAddress.address2}
                         onChange={handleInputChange}
                         placeholder="Apartment, suite, floor, etc."
-                        className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                        className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                           errors["newAddress.address2"]
                             ? "border-red-400 bg-red-50"
                             : "border-gray-200 hover:border-gray-300"
@@ -928,7 +928,7 @@ const CheckoutPage = () => {
                           name="newAddress.city"
                           value={formData.newAddress.city}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                             errors["newAddress.city"]
                               ? "border-red-400 bg-red-50"
                               : "border-gray-200 hover:border-gray-300"
@@ -950,7 +950,7 @@ const CheckoutPage = () => {
                           name="newAddress.state"
                           value={formData.newAddress.state}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                             errors["newAddress.state"]
                               ? "border-red-400 bg-red-50"
                               : "border-gray-200 hover:border-gray-300"
@@ -979,7 +979,7 @@ const CheckoutPage = () => {
                           name="newAddress.zipCode"
                           value={formData.newAddress.zipCode}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all duration-200 ${
+                          className={`w-full px-4 py-4 border-2 rounded-2xl focus:ring-2 focus:ring-[#ED1C24] focus:border-[#ED1C24] outline-none transition-all duration-200 ${
                             errors["newAddress.zipCode"]
                               ? "border-red-400 bg-red-50"
                               : "border-gray-200 hover:border-gray-300"
@@ -997,7 +997,7 @@ const CheckoutPage = () => {
                     <div className="flex justify-end">
                       <button
                         onClick={handleAddNewAddress}
-                        className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+                        className="bg-gradient-to-r from-[#ED1C24] to-red-500 text-white px-6 py-3 rounded-2xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                       >
                         Save Address
                       </button>
@@ -1008,7 +1008,7 @@ const CheckoutPage = () => {
                 <div className="flex items-center justify-between mt-8">
                   <button
                     onClick={handlePrevStep}
-                    className="text-green-600 font-semibold hover:text-green-800 transition-colors flex items-center bg-green-50 px-6 py-3 rounded-2xl"
+                    className="text-[#ed1c24] font-semibold hover:text-red-600 transition-colors flex items-center bg-green-50 px-6 py-3 rounded-2xl"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Contact
@@ -1016,7 +1016,7 @@ const CheckoutPage = () => {
                   {!showAddressForm && (
                     <button
                       onClick={handleNextStep}
-                      className="bg-gradient-to-r from-green-600 to-lime-600 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                      className="bg-gradient-to-r from-[#ED1C24] to-red-500 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                     >
                       Continue to Payment
                     </button>
@@ -1030,7 +1030,7 @@ const CheckoutPage = () => {
               <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 border border-gray-100">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 bg-gradient-to-r from-green-100 to-indigo-100 rounded-full flex items-center justify-center mr-4">
-                    <CreditCard className="w-6 h-6 text-green-600" />
+                    <CreditCard className="w-6 h-6 text-[#ED1C24]" />
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900">
                     Select Payment Method
@@ -1059,8 +1059,8 @@ const CheckoutPage = () => {
                           }
                           className={`w-full text-left p-4 border rounded-2xl transition-colors ${
                             formData.paymentMethods === "cod"
-                              ? "border-green-600 bg-green-50"
-                              : "border-gray-300 hover:border-green-500"
+                              ? "border-[#ED1C24] bg-green-50"
+                              : "border-gray-300 hover:border-[#ED1C24]"
                           }`}
                         >
                           <span className="text-gray-800 font-medium">
@@ -1080,8 +1080,8 @@ const CheckoutPage = () => {
                           }
                           className={`w-full text-left p-4 border rounded-2xl transition-colors ${
                             formData.paymentMethods === "online"
-                              ? "border-green-600 bg-green-50"
-                              : "border-gray-300 hover:border-green-500"
+                              ? "border-[#ED1C24] bg-green-50"
+                              : "border-gray-300 hover:border-[#ED1C24]"
                           }`}
                         >
                           <span className="text-gray-800 font-medium">
@@ -1096,7 +1096,7 @@ const CheckoutPage = () => {
                 <div className="flex items-center justify-between">
                   <button
                     onClick={handlePrevStep}
-                    className="text-green-600 font-semibold hover:text-green-800 transition-colors flex items-center bg-green-50 px-6 py-3 rounded-2xl"
+                    className="text-[#ED1C24] font-semibold hover:text-red-600 transition-colors flex items-center bg-green-50 px-6 py-3 rounded-2xl"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Shipping
@@ -1109,7 +1109,7 @@ const CheckoutPage = () => {
                         : handlePlaceOrderOnline()
                     }
                     disabled={isProcessing || !formData.paymentMethods}
-                    className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    className="bg-gradient-to-r from-[#ED1C24] to-red-500 text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     {isProcessing ? (
                       <div className="flex items-center">
@@ -1130,7 +1130,7 @@ const CheckoutPage = () => {
             <div className="bg-white rounded-3xl shadow-xl p-8 sticky top-8 border border-gray-100">
               <h2 className="text-2xl font-semibold text-gray-900 mb-8 flex items-center">
                 <div className="w-8 h-8 bg-gradient-to-r from-green-100 to-indigo-100 rounded-full flex items-center justify-center mr-3">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <CheckCircle className="w-5 h-5 text-[#ED1C24]" />
                 </div>
                 Order Summary
               </h2>
@@ -1185,7 +1185,7 @@ const CheckoutPage = () => {
                 <div className="border-t-2 border-gray-200 pt-4">
                   <div className="flex justify-between font-bold text-gray-900 text-xl">
                     <span>Total</span>
-                    <span className="text-green-600">₹{total.toFixed(2)}</span>
+                    <span className="text-[#ED1C24]">₹{total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -1195,7 +1195,7 @@ const CheckoutPage = () => {
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div className="flex flex-col items-center">
                     <div className="w-12 h-12 bg-gradient-to-r from-green-100 to-emerald-100 rounded-full flex items-center justify-center mb-2">
-                      <Shield className="w-6 h-6 text-green-600" />
+                      <Shield className="w-6 h-6 text-[#ED1C24]" />
                     </div>
                     <p className="text-xs font-semibold text-gray-700">
                       Secure Payment
@@ -1203,7 +1203,7 @@ const CheckoutPage = () => {
                   </div>
                   <div className="flex flex-col items-center">
                     <div className="w-12 h-12 bg-gradient-to-r from-green-100 to-indigo-100 rounded-full flex items-center justify-center mb-2">
-                      <Lock className="w-6 h-6 text-green-600" />
+                      <Lock className="w-6 h-6 text-[#ED1C24]" />
                     </div>
                     <p className="text-xs font-semibold text-gray-700">
                       SSL Encrypted

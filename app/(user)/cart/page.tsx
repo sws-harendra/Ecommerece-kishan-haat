@@ -287,7 +287,7 @@ const CartPage = () => {
                 </button>
               </Link>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-lime-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-[#ED1C24] bg-clip-text text-transparent">
                   Shopping Cart
                 </h1>
                 <p className="text-gray-600 text-sm font-medium">
@@ -499,7 +499,7 @@ const CartPage = () => {
           <div className="lg:col-span-1">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-6 sticky top-28">
               <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
-                <div className="w-8 h-8 bg-gradient-to-r from-lime-500 to-green-500 rounded-lg flex items-center justify-center mr-3">
+                <div className="w-8 h-8 bg-[#ED1C24] rounded-lg flex items-center justify-center mr-3">
                   <CreditCard className="w-4 h-4 text-white" />
                 </div>
                 Order Summary
@@ -577,7 +577,7 @@ const CartPage = () => {
                 <button
                   // onClick={handleCheckout}
                   disabled={isCheckingOut || items.length === 0}
-                  className="w-full bg-gradient-to-r from-green-600 to-lime-600 text-white py-4 rounded-xl font-bold text-lg hover:from-green-700 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mb-6"
+                  className="w-full bg-[#ED1C24] text-white py-4 rounded-xl font-bold text-lg hover:from-green-700 hover:to-green-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none mb-6"
                 >
                   {isCheckingOut ? (
                     <div className="flex items-center justify-center">

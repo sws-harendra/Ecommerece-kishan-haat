@@ -48,6 +48,7 @@ export default function BlogForm({ post }: { post?: any }) {
         />
       </div>
 
+
       <div>
         <label className="block font-medium">Content</label>
         <RichTextEditor value={content} onChange={setContent} />

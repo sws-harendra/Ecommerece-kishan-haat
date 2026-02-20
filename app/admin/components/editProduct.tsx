@@ -16,6 +16,7 @@ import {
 import { categoryService } from "@/app/sercices/category.service";
 import { getImageUrl } from "@/app/utils/getImageUrl";
 import { isImageFile, isVideoFile } from "@/app/utils/getMediaType";
+import RichTextEditor from "@/app/commonComponents/RichTextEditor";
 
 interface Category {
   id: number;
@@ -104,6 +105,15 @@ const EditProduct: React.FC<EditProductProps> = ({ productId }) => {
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+
+  // Product Description Handler
+  const handleDescriptionChange = (value: string) => {
+  setFormData((prev) => ({
+    ...prev,
+    description: value,
+  }));
+};
 
   const handleMediaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -295,7 +305,7 @@ const EditProduct: React.FC<EditProductProps> = ({ productId }) => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Description
                     </label>
-                    <textarea
+                    {/* <textarea
                       name="description"
                       placeholder="Describe your product features and benefits"
                       value={formData.description}
@@ -303,7 +313,14 @@ const EditProduct: React.FC<EditProductProps> = ({ productId }) => {
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white resize-none"
                       rows={4}
                       required
-                    />
+                    /> */}
+                    <RichTextEditor
+                      placeholder="Describe your product features and benefits"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white resize-none"
+                      value={formData.description} 
+                      onChange={handleDescriptionChange}
+                      required
+                      />
                   </div>
 
                   {/* Category */}
