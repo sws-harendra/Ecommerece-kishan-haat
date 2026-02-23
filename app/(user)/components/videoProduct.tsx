@@ -100,10 +100,10 @@ export default function VideoProduct() {
   if (!videos.length)
     return (
       <div className="flex flex-col items-center justify-center pt-10">
-        <div className="w-16 h-16 rounded-full bg-gradient-to-r from-green-700 via-green-600 to-lime-500 flex items-center justify-center mb-4">
+        {/* <div className="w-16 h-16 rounded-full bg-gradient-to-r from-green-700 via-green-600 to-lime-500 flex items-center justify-center mb-4">
           <Volume2 className="w-8 h-8 text-white" />
         </div>
-        <p className="text-gray-600 text-lg font-medium">No videos available</p>
+        <p className="text-gray-600 text-lg font-medium">No videos available</p> */}
       </div>
     );
 

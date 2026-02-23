@@ -140,12 +140,12 @@ export default function RegisterForm() {
         <div className="rounded-3xl shadow-2xl border border-white/20 overflow-hidden">
           <div className="flex flex-col lg:flex-row">
             {/* Left Side - Profile Image */}
-            <div className="lg:w-1/3 bg-gradient-to-br from-lime-600/20 to-green-600/20 p-8 flex flex-col items-center justify-center space-y-6 border-b lg:border-b-0 lg:border-r border-white/20">
+            <div className="lg:w-1/3 bg-gradient-to-br from-[#E53935] via-[#E53935] to-red-800/90 p-8 flex flex-col items-center justify-center space-y-6 border-b lg:border-b-0 lg:border-r border-white/20">
               <div className="text-center">
-                <h3 className="text-2xl font-semibold text-gray-700 mb-2">
+                <h3 className="text-2xl font-semibold text-white mb-2">
                   Profile Photo
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-white text-sm">
                   Choose a profile picture to personalize your account
                 </p>
               </div>
@@ -188,7 +188,7 @@ export default function RegisterForm() {
                     onChange={handleImageUpload}
                     className="hidden"
                   />
-                  <div className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-lime-500 to-green-500 text-white rounded-xl hover:from-lime-600 hover:to-green-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                  <div className="flex items-center space-x-2 px-6 py-3 bg-white text-black rounded-xl  hover:border-1 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
                     <Camera className="w-5 h-5" />
                     <span className="font-medium">
                       {profileImage ? "Change Photo" : "Upload Photo"}
@@ -202,7 +202,7 @@ export default function RegisterForm() {
                   </p>
                 )}
 
-                <p className="text-xs text-gray-400 text-center">
+                <p className="text-xs text-white font-bold text-center">
                   JPG, PNG or GIF (max 5MB)
                 </p>
               </div>
@@ -228,7 +228,7 @@ export default function RegisterForm() {
                       type="text"
                       value={fullname}
                       onChange={(e) => setFullName(e.target.value)}
-                      className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent text-black ${
+                      className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent text-white ${
                         errors.fullname
                           ? "border-red-400"
                           : "border-white/20 hover:border-white/30"
@@ -260,7 +260,7 @@ export default function RegisterForm() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent text-black ${
+                      className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent text-black ${
                         errors.email
                           ? "border-red-400"
                           : "border-white/20 hover:border-white/30"
@@ -291,7 +291,7 @@ export default function RegisterForm() {
                       type={showPassword ? "text" : "password"}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all text-black duration-200 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent  ${
+                      className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all text-black duration-200 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent  ${
                         errors.password
                           ? "border-red-400"
                           : "border-white/20 hover:border-white/30"
@@ -322,7 +322,7 @@ export default function RegisterForm() {
                   <input
                     type="checkbox"
                     id="terms"
-                    className="h-4 w-4 text-lime-600 focus:ring-lime-500 border-gray-300 rounded bg-white/10"
+                    className="h-4 w-4 text-[#E53935] focus:ring-[#E53935] border-gray-300 rounded bg-white/10"
                   />
                   <label
                     htmlFor="terms"
@@ -331,14 +331,14 @@ export default function RegisterForm() {
                     I agree to the{" "}
                     <a
                       href="#"
-                      className="text-lime-400 hover:text-lime-600 font-medium"
+                      className="text-[#E53935] hover:text-[#E53935] font-medium"
                     >
                       Terms of Service
                     </a>{" "}
                     and{" "}
                     <a
                       href="#"
-                      className="text-lime-400 hover:text-lime-600 font-medium"
+                      className="text-[#E53935] hover:text-[#E53935] font-medium"
                     >
                       Privacy Policy
                     </a>
@@ -350,7 +350,7 @@ export default function RegisterForm() {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-lime-600 to-green-600 text-white py-4 px-6 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-[#E53935] to-red-600 text-white py-4 px-6 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
                 >
                   {isLoading ? (
                     <>
@@ -370,7 +370,7 @@ export default function RegisterForm() {
                   Already have an account?{" "}
                   <Link
                     href="/authentication/login"
-                    className="font-medium text-lime-400 hover:text-lime-600"
+                    className="font-medium text-[#E53935] hover:text-[#E53935]"
                   >
                     Sign in
                   </Link>

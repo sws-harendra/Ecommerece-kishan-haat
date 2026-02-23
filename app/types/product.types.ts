@@ -20,6 +20,23 @@ export interface ProductVariant {
   options: ProductVariantOption[];
 }
 
+export interface Review {
+  id: number;
+  productId: number;
+  userId: number;
+  rating: number;
+  comment: string;
+  isDeleted: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+
+  user?: {
+    id: number;
+    fullname: string;
+    avatar?: string | null;
+  };
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -30,8 +47,9 @@ export interface Product {
   discountPrice: string;
   stock: number;
   images: string[];
-  reviews: null;
-  ratings: null;
+  reviews?: Review[];
+  averageRating?: number;
+  totalReviews?: number;
   sold_out: number;
   max_quantity_to_order: number;
   createdAt: Date;
@@ -56,7 +74,8 @@ export interface ProductApiResponse {
 }
 
 export interface ProductState {
-  products: ProductApiResponse | []; // whole API response
+  // products: ProductApiResponse | []; // whole API response
+  products: ProductApiResponse | null; // just the products array
   product: Product | null;
   trendingProducts: Product[];
   status: "idle" | "loading" | "succeeded" | "failed";

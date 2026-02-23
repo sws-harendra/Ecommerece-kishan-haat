@@ -19,6 +19,7 @@ import {
   useAppSelector,
 } from "@/app/lib/store/store";
 import Link from "next/link";
+import Image from 'next/image'
 import { logout } from "@/app/lib/store/features/authSlice";
 import { useRouter } from "next/navigation";
 import { selectCartItemsCount } from "@/app/lib/store/features/cartSlice";
@@ -95,7 +96,13 @@ export default function EcommerceNavbar() {
                   alt="Kishan Haat"
                   className="w-32 h-auto"
                 /> */}
-                <h2 className=" text-2xl sm:text-5xl">𝒇𝒂𝒔𝒉𝒊𝒐𝒏</h2>
+                <h2 className=" text-2xl sm:text-5xl">
+                   <Image
+                    src="/logo.png"
+                    width={110}
+                    height={110}
+                    alt="Logo" />
+                </h2>
                 {/* <h1 className="text-2xl font-bold bg-gradient-to-r from-green-700 via-green-600 to-lime-500 bg-clip-text text-transparent">
                  Kishan Haat
                 </h1> */}

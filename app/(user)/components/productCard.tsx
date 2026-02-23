@@ -103,7 +103,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
           {/* Premium Badge */}
-          {rating >= 4.5 && (
+          {Number(rating) >= 4.5 && (
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
               ⭐ Premium Choice
             </div>
@@ -154,7 +154,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
 
           {/* Enhanced Rating */}
-          {/* <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="flex items-center space-x-0.5">
                 {[...Array(5)].map((_, i) => (
@@ -176,7 +176,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </span>
             </div>
 
-          </div> */}
+          </div>
 
           {/* Enhanced Price Section */}
           <div className=" ">

@@ -5,6 +5,7 @@ import { Product, ProductVariant } from "@/app/types/product.types";
 import { getImageUrl } from "@/app/utils/getImageUrl";
 import { discountPercentage } from "@/app/utils/discountCalculator";
 import { useState, useEffect } from "react";
+import axios from "axios"; 
 import Link from "next/link";
 import Heading from "@/app/commonComponents/heading";
 import Loader from "@/app/commonComponents/loader";
@@ -20,9 +21,10 @@ import {
   ShoppingCart,
   Wallet,
   Copy,
+  Star,
 } from "lucide-react";
 import { addToCart } from "@/app/lib/store/features/cartSlice";
-import { useAppDispatch, useAppSelector } from "@/app/lib/store/store";
+import { RootState, useAppDispatch, useAppSelector } from "@/app/lib/store/store";
 import { useRouter } from "next/navigation";
 import {
   FacebookShareButton,
@@ -42,6 +44,7 @@ import Description from "@/app/(user)/components/Description";
 import YouMayLike from "@/app/(user)/components/YouMayLike";
 import ProductCard from "@/app/(user)/components/productCard";
 import { fetchRelatedProducts } from "@/app/lib/store/features/relatedProductSlice";
+import { useSelector } from "react-redux";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -61,11 +64,44 @@ export default function ProductDetailClient({
   const [selectedImage, setSelectedImage] = useState(0);
 
   const dispatch = useAppDispatch(); // ✅ typed dispatch
+
+  const [rating, setRating] = useState(0); // New state for rating value
+  const [hover, setHover] = useState(0); // New state for hover effect on stars
+  const [loading, setLoading] = useState(false); // New state for loading status when submitting review
+  const [averageRating, setAverageRating] = useState<number>(0);
+  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [reviewComment, setReviewComment] = useState("");
+  const [reviewRating, setReviewRating] = useState(0);
+
+  const { user } = useSelector((state: RootState) => state.auth);
+  const hasReviewed = reviews.some(
+  (review: any) => review.userId === user?.id
+);
   
   // related products
-  const { products, loading } = useAppSelector(
+  const { products, loading: relatedLoading  } = useAppSelector(
     (state) => state.relatedProducts
   );
+
+  // fetching reviews and rating 
+  const fetchReviewsAndRating = async () => {
+  try {
+    const reviewRes = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/review-rating/product-reviews/${product.id}`
+    );
+
+    setReviews(reviewRes.data.reviews);
+
+    const avgRes = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/review-rating/average-rating/${product.id}`
+    );
+
+    setAverageRating(parseFloat(avgRes.data.averageRating) || 0);
+  } catch (err) {
+    console.error("Error fetching reviews", err);
+  }
+};
 
   useEffect(() => {
     if (product?.id) {
@@ -90,6 +126,12 @@ export default function ProductDetailClient({
       console.error("Failed to copy!", err);
     }
   };
+
+  useEffect(() => {
+  if (product?.id) {
+    fetchReviewsAndRating();
+  }
+}, [product?.id]);
 
   useEffect(() => {
     setMounted(true);
@@ -180,7 +222,7 @@ export default function ProductDetailClient({
 
               /* ===== MULTIPLE IMAGES (2x2 GRID) ===== */
               <div className="grid grid-cols-2 gap-2 md:gap-4">
-                {displayImages.slice(0, 4).map((file, index) => {
+                {displayImages.map((file, index) => {
                   const fileType = getFileType(file);
 
                   return (
@@ -307,6 +349,28 @@ export default function ProductDetailClient({
               <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent leading-tight">
                 {product.name}
               </h1>
+              {/* ⭐ Average Rating Under Product Name */}
+              <div className="flex items-center gap-2 mt-2">
+                {/* Stars */}
+                <div className="flex items-center">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star
+                      key={star}
+                      size={18}
+                      className={
+                        star <= Math.round(averageRating)
+                          ? "text-yellow-500 fill-yellow-500"
+                          : "text-gray-300"
+                      }
+                    />
+                  ))}
+                </div>
+
+                {/* Rating Text */}
+                <span className="text-sm text-gray-600">
+                  {averageRating.toFixed(1)} ({reviews.length} reviews)
+                </span>
+              </div>
             </div>
 
             {/* Price Section with Animation */}
@@ -418,6 +482,89 @@ export default function ProductDetailClient({
               </div>
             </div>
 
+            {/* write a review button */}
+          {user && !hasReviewed && (
+            <button
+              onClick={() => setReviewOpen(true)}
+              className="mt-3 bg-gray-300 border border-black hover:scale-105 duration-300 text-black font-semibold w-full py-2 rounded-lg transition"
+            >
+              Write a Review
+            </button>
+          )}
+
+          {/* review popup */}
+          {reviewOpen && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-white w-full max-w-md rounded-2xl p-6 shadow-xl relative">
+                
+                <button
+                  onClick={() => setReviewOpen(false)}
+                  className="absolute top-3 right-3 text-gray-500 hover:text-black"
+                >
+                  ✕
+                </button>
+
+                <h2 className="text-xl font-bold mb-4">Write a Review</h2>
+
+                {/* Star Rating */}
+                <div className="flex gap-2 mb-4">
+                  {[1,2,3,4,5].map((star) => (
+                    <Star
+                      key={star}
+                      size={28}
+                      onClick={() => setReviewRating(star)}
+                      className={`cursor-pointer ${
+                        star <= reviewRating
+                          ? "text-yellow-500 fill-yellow-500"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Comment */}
+                <textarea
+                  value={reviewComment}
+                  onChange={(e) => setReviewComment(e.target.value)}
+                  placeholder="Write your review..."
+                  className="w-full border rounded-lg p-2 mb-4"
+                  rows={4}
+                />
+
+                {/* Submit */}
+                <button
+                  onClick={async () => {
+                    try {
+                      await axios.post(
+                        `${process.env.NEXT_PUBLIC_API_URL}/review-rating/add-review`,
+                        {
+                          productId: product.id,
+                          rating: reviewRating,
+                          comment: reviewComment,
+                        },
+                        { withCredentials: true }
+                      );
+                      await fetchReviewsAndRating();
+
+                      setReviewOpen(false);
+                      setReviewComment("");
+                      setReviewRating(0);
+
+                      alert("Review added successfully ✅");
+
+                    } catch (error:any) {
+                      setReviewOpen(false);
+                      alert(error.response?.data?.message || "Error adding review");
+                    }
+                  }}
+                  className="w-full bg-[#E53935] hover:bg-red-600 text-white py-2 rounded-lg"
+                >
+                  Submit Review
+                </button>
+              </div>
+            </div>
+          )}
+
 
             {/* Description */}
             <Description description={product.description} />
@@ -491,16 +638,97 @@ export default function ProductDetailClient({
         </div>
       </div>
 
-      <YouMayLike/>
+{/* ================= MATCHED REVIEWS SECTION ================= */}
+{reviews && reviews.length > 0 && (
+  <div className="mt-12 border-t border-gray-200 pt-8">
+    
+    {/* Section Title */}
+    <div className="mb-6 px-4 md:px-14">
+      <h2 className="text-xl font-semibold text-center text-gray-800">
+        Customer Reviews
+        <span className="text-gray-500 font-normal ml-2">
+          ({reviews.length})
+        </span>
+      </h2>
+    </div>
 
-      {/* {products.length > 0 && 
+    {/* Scroll Container */}
+    <div className="relative">
+      <div className="flex gap-5 px-4 md:px-14 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4">
+        
+        {reviews.map((review: any) => (
+          <div
+            key={review.id}
+            className="min-w-[260px] max-w-[260px] bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 snap-start"
+          >
+            {/* Header */}
+            <div className="flex items-center gap-3 mb-3">
+              <img
+                src={
+                  review.user?.avatar
+                    ? `http://localhost:8000/uploads/${review.user.avatar}`
+                    : "/blankProfilePicture.png"
+                }
+                alt={review.user?.fullname}
+                className="w-9 h-9 rounded-full object-cover border border-gray-200"
+              />
+
+              <div>
+                <p className="text-sm font-medium text-gray-800">
+                  {review.user?.fullname}
+                </p>
+                <p className="text-xs text-gray-400">
+                  {new Date(review.createdAt).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+
+            {/* Rating */}
+            <div className="flex items-center gap-1 mb-2">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  size={14}
+                  className={
+                    i < review.rating
+                      ? "text-yellow-500 fill-yellow-500"
+                      : "text-gray-300"
+                  }
+                />
+              ))}
+            </div>
+
+            {/* Comment */}
+            {review.comment ? (
+              <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+                {review.comment}
+              </p>
+            ) : (
+              <p className="text-sm text-gray-400 italic">
+                No written feedback.
+              </p>
+            )}
+          </div>
+        ))}
+
+      </div>
+
+      {/* Optional Scroll Fade (very subtle, matches white bg) */}
+      <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white to-transparent pointer-events-none hidden md:block" />
+    </div>
+  </div>
+)}
+
+      {/* similar products section */}
+      {/* <YouMayLike/> */}
+      {products.length === 0 &&(<p className="col-span-full text-center text-gray-500">No similar products available</p>)}
+
+      {products.length > 0 && 
       (
         <div className="mt-16">
-          <h2 className="text-2xl font-bold mb-6">Similar Products</h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          <h2 className="text-3xl font-bold mb-6 text-center">Similar Products</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 px-8 py-6">
             {products.map((item: any) => (
-              
               <ProductCard
                 key={item.id}
                 id={item.id}
@@ -512,12 +740,11 @@ export default function ProductDetailClient({
                 discount={item.discountPercentage}
                 paymentMethods={item.paymentMethods}
               />
-
             ))}
           </div>
         </div>
       )
-      } */}
+      }
 
     </div>
 

@@ -57,10 +57,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
       >
         {/* Discount Badge */}
         {discountPercent > 0 && (
-          <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-green-700 via-green-600 to-lime-500 text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow-md">
+          <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-[#E53935] via-[#D32F2F] to-[#B71C1C] text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow-md">
             {discountPercent}% OFF
           </div>
         )}
+
 
         {/* Favorite Button */}
         <button
@@ -107,7 +108,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
           {/* Quick Action Buttons */}
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <button className="bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-md hover:bg-white hover:scale-105 transition-all duration-200">
               <Eye size={16} className="text-gray-700" />
             </button>
@@ -119,7 +120,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             >
               <ShoppingCart size={16} />
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Product Info */}
@@ -127,13 +128,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
           className={`${viewMode === "list" ? "flex-1 py-2" : "p-4 space-y-3"}`}
         >
           {/* Category Badge */}
-          <span className="inline-block px-2 py-1 text-xs font-medium text-green-600 bg-green-50 rounded-full capitalize mb-2">
+          <span className="inline-block px-2 py-1 text-xs font-medium text-red-600 bg-green-50 rounded-full capitalize mb-2">
             {product.Category?.name || "General"}
           </span>
 
           {/* Product Name */}
           <h3
-            className={`font-medium text-gray-800 group-hover:text-green-600 transition-colors duration-300 line-clamp-2 ${
+            className={`font-medium text-gray-800 group-hover:text-red-600 transition-colors duration-300 line-clamp-2 ${
               viewMode === "list" ? "text-lg" : "text-sm leading-tight"
             }`}
           >
@@ -167,7 +168,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {/* Stock Status */}
             <span
               className={`text-xs font-medium ${
-                product.stock > 0 ? "text-green-600" : "text-gray-500"
+                product.stock > 0 ? "text-red-600" : "text-gray-500"
               }`}
             >
               {product.stock > 0 ? "In Stock" : "Out of Stock"}
@@ -192,7 +193,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               className={`p-2 rounded-lg transition-colors duration-200 group/cart ${
                 product.sold_out === 1
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-green-100 text-green-600 hover:bg-green-200"
+                  : "bg-green-100 text-red-600 hover:bg-red-200"
               }`}
               disabled={product.sold_out === 1}
             >

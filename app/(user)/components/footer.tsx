@@ -2,6 +2,7 @@
 import { brandName } from "@/app/contants";
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -11,7 +12,11 @@ export default function Footer() {
         <div>
           <h2 className="text-3xl font-bold text-white">
             {/* {brandName} */}
-            𝒇𝒂𝒔𝒉𝒊𝒐𝒏
+            <Image
+                src="/logo.png"
+                width={210}
+                height={210}
+                alt="Logo" />
             </h2>
           <p className="mt-4 text-sm  max-w-xs">
             Your trusted destination for fresh farm products directly from

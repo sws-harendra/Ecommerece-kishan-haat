@@ -58,4 +58,28 @@ export const productService = {
     const response = await axiosInstance.get("/products/trending-products");
     return response.data;
   },
+ addReview: async (reviewData: {
+  productId: number;
+  rating: number;
+  comment: string;
+  }) => {
+    const response = await axiosInstance.post(
+      `/review-rating/add-review`,
+      reviewData
+    );
+    return response.data;
+  },
+  getProductReviews: async (productId: number) => {
+    const response = await axiosInstance.get(
+      `/review-rating/product-reviews/${productId}`
+    );
+    return response.data;
+  },
+
+  getAverageRating: async (productId: number) => {
+    const response = await axiosInstance.get(
+      `/review-rating/average-rating/${productId}`
+    );
+    return response.data;
+  },
 };
