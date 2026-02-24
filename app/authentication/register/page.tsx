@@ -228,7 +228,7 @@ export default function RegisterForm() {
                       type="text"
                       value={fullname}
                       onChange={(e) => setFullName(e.target.value)}
-                      className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent text-white ${
+                      className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl bg-white/10 backdrop-blur-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent text-black ${
                         errors.fullname
                           ? "border-red-400"
                           : "border-white/20 hover:border-white/30"

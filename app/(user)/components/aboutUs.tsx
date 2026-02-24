@@ -36,14 +36,14 @@ const AboutUs = () => {
           </div>
 
           <h3 className="text-3xl font-bold text-gray-900 leading-snug">
-            Designed For The Way You Live
+            Bringing fashion closer to your lifestyle.
           </h3>
 
           <p className="text-gray-700 text-lg leading-relaxed">
             At <span className="font-semibold">{brandName}</span>, we bring you
-            handmade paintings created by passionate artists. Each artwork is
-            carefully crafted to add warmth, personality, and timeless beauty
-            to your home.
+            thoughtfully designed clothing crafted with quality fabrics and modern
+            trends in mind. Every piece is made to deliver comfort, confidence, and
+            effortless style to your everyday wardrobe.
           </p>
 
           <p className="text-gray-700 text-lg leading-relaxed">

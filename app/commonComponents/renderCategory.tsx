@@ -96,7 +96,7 @@ const DropdownCategory: React.FC<{ category: CategoryType }> = ({
       {category.subcategories?.length ? (
         <div
           className="absolute -left-1/2 top-full mt-3
-                    w-[95vw] sm:w-[90vw] md:w-[80vw] lg:w-[70vw]
+                    w-[95vw] sm:w-[90vw] md:w-[80vw] lg:w-[50vw]
                     max-w-6xl bg-white shadow-xl rounded-xl
                     opacity-0 invisible group-hover:opacity-100
                     group-hover:visible transition-all duration-200 z-50"

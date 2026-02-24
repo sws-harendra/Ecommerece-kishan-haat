@@ -5,8 +5,8 @@ export const fetchRelatedProducts = createAsyncThunk(
   "relatedProducts/fetch",
   async (productId: number) => {
     const res = await axios.get(
-      // `${process.env.NEXT_PUBLIC_API_URL}/products/related/${productId}`
-      `${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related`
+      // `${process.env.NEXT_PUBLIC_serverurl}/products/related/${productId}`
+      `${process.env.NEXT_PUBLIC_serverurl}/products/${productId}/related`
       
     );
     console.log("API response:", res.data);  // 👈 ADD THIS
@@ -36,7 +36,7 @@ const relatedProductSlice = createSlice({
   },
 });
 
-console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+console.log("API URL:", process.env.NEXT_PUBLIC_serverurl);
 
 
 export default relatedProductSlice.reducer;

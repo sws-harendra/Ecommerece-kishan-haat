@@ -45,6 +45,7 @@ import YouMayLike from "@/app/(user)/components/YouMayLike";
 import ProductCard from "@/app/(user)/components/productCard";
 import { fetchRelatedProducts } from "@/app/lib/store/features/relatedProductSlice";
 import { useSelector } from "react-redux";
+import { useRef } from "react";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -65,14 +66,30 @@ export default function ProductDetailClient({
 
   const dispatch = useAppDispatch(); // ✅ typed dispatch
 
-  const [rating, setRating] = useState(0); // New state for rating value
-  const [hover, setHover] = useState(0); // New state for hover effect on stars
-  const [loading, setLoading] = useState(false); // New state for loading status when submitting review
   const [averageRating, setAverageRating] = useState<number>(0);
   const [reviews, setReviews] = useState<any[]>([]);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [reviewComment, setReviewComment] = useState("");
   const [reviewRating, setReviewRating] = useState(0);
+
+  const reviewsRef = useRef<HTMLDivElement | null>(null);
+
+  // Pagination Logic
+  const reviewsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+
+  const currentReviews = reviews.slice(
+    indexOfFirstReview,
+    indexOfLastReview
+  );
+
+
+ 
 
   const { user } = useSelector((state: RootState) => state.auth);
   const hasReviewed = reviews.some(
@@ -88,13 +105,14 @@ export default function ProductDetailClient({
   const fetchReviewsAndRating = async () => {
   try {
     const reviewRes = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/review-rating/product-reviews/${product.id}`
+      `${process.env.NEXT_PUBLIC_serverurl}/review-rating/product-reviews/${product.id}`
     );
 
     setReviews(reviewRes.data.reviews);
+    setCurrentPage(1);
 
     const avgRes = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/review-rating/average-rating/${product.id}`
+      `${process.env.NEXT_PUBLIC_serverurl}/review-rating/average-rating/${product.id}`
     );
 
     setAverageRating(parseFloat(avgRes.data.averageRating) || 0);
@@ -484,12 +502,12 @@ export default function ProductDetailClient({
 
             {/* write a review button */}
           {user && !hasReviewed && (
-            <button
-              onClick={() => setReviewOpen(true)}
-              className="mt-3 bg-gray-300 border border-black hover:scale-105 duration-300 text-black font-semibold w-full py-2 rounded-lg transition"
-            >
-              Write a Review
-            </button>
+                <button
+                onClick={() => setReviewOpen(true)}
+                className="mt-3 bg-gray-300 border border-black hover:scale-105 duration-300 text-black font-semibold block w-full max-w-[500px] mx-auto py-2 rounded-lg transition"
+              >
+                Write a Review
+              </button>             
           )}
 
           {/* review popup */}
@@ -535,8 +553,9 @@ export default function ProductDetailClient({
                 <button
                   onClick={async () => {
                     try {
+                      console.log("Product ID:", product.id);
                       await axios.post(
-                        `${process.env.NEXT_PUBLIC_API_URL}/review-rating/add-review`,
+                        `${process.env.NEXT_PUBLIC_serverurl}/review-rating/add-review`,
                         {
                           productId: product.id,
                           rating: reviewRating,
@@ -638,86 +657,113 @@ export default function ProductDetailClient({
         </div>
       </div>
 
-{/* ================= MATCHED REVIEWS SECTION ================= */}
+{/* ================= PREMIUM REVIEWS SECTION ================= */}
 {reviews && reviews.length > 0 && (
-  <div className="mt-12 border-t border-gray-200 pt-8">
-    
-    {/* Section Title */}
-    <div className="mb-6 px-4 md:px-14">
-      <h2 className="text-xl font-semibold text-center text-gray-800">
+  <div 
+  ref={reviewsRef}
+  className="mt-14 border-t border-gray-200 pt-10 px-4 md:px-14">
+
+    {/* Title */}
+    <div className="mb-10 text-center">
+      <h2 className="text-2xl font-semibold text-gray-800">
         Customer Reviews
-        <span className="text-gray-500 font-normal ml-2">
-          ({reviews.length})
-        </span>
       </h2>
+      <p className="text-gray-500 text-sm mt-1">
+        {reviews.length} Verified Reviews
+      </p>
     </div>
 
-    {/* Scroll Container */}
-    <div className="relative">
-      <div className="flex gap-5 px-4 md:px-14 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4">
-        
-        {reviews.map((review: any) => (
-          <div
-            key={review.id}
-            className="min-w-[260px] max-w-[260px] bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 snap-start"
-          >
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-3">
-              <img
-                src={
-                  review.user?.avatar
-                    ? `http://localhost:8000/uploads/${review.user.avatar}`
-                    : "/blankProfilePicture.png"
-                }
-                alt={review.user?.fullname}
-                className="w-9 h-9 rounded-full object-cover border border-gray-200"
-              />
+    <div className="space-y-6">
+      {currentReviews.map((review: any) => (
+        <div
+          key={review.id}
+          className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition duration-300"
+        >
+          <div className="flex items-start gap-4">
 
-              <div>
-                <p className="text-sm font-medium text-gray-800">
-                  {review.user?.fullname}
-                </p>
-                <p className="text-xs text-gray-400">
-                  {new Date(review.createdAt).toLocaleDateString()}
-                </p>
+            {/* Avatar */}
+            <img
+              src={
+                review.user?.avatar
+                  ? `http://localhost:8000/uploads/${review.user.avatar}`
+                  : "/blankProfilePicture.png"
+              }
+              alt={review.user?.fullname}
+              className="w-12 h-12 rounded-full object-cover border"
+            />
+
+            {/* Content */}
+            <div className="flex-1">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <p className="font-semibold text-gray-800">
+                    {review.user?.fullname}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {new Date(review.createdAt).toLocaleDateString()}
+                  </p>
+                </div>
+
+                {/* Rating */}
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={
+                        i < review.rating
+                          ? "text-yellow-500 fill-yellow-500"
+                          : "text-gray-300"
+                      }
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Rating */}
-            <div className="flex items-center gap-1 mb-2">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  size={14}
-                  className={
-                    i < review.rating
-                      ? "text-yellow-500 fill-yellow-500"
-                      : "text-gray-300"
-                  }
-                />
+              {/* Comment */}
+              {review.comment ? (
+                <p className="text-gray-600 leading-relaxed mt-2">
+                  {review.comment}
+                </p>
+              ) : (
+                <p className="text-gray-400 italic">
+                  No written feedback.
+                </p>
+              )}
+            </div>
+          </div>
+          
+        </div>
+      ))}
+      {/* pagination buttons */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-10">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setCurrentPage(index + 1);
+                    reviewsRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }}
+                  className={`w-9 h-9 rounded-full text-sm font-medium transition 
+                    ${
+                      currentPage === index + 1
+                        ? "bg-[#E53935] text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                >
+                  {index + 1}
+                </button>
               ))}
             </div>
-
-            {/* Comment */}
-            {review.comment ? (
-              <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
-                {review.comment}
-              </p>
-            ) : (
-              <p className="text-sm text-gray-400 italic">
-                No written feedback.
-              </p>
-            )}
-          </div>
-        ))}
-
-      </div>
-
-      {/* Optional Scroll Fade (very subtle, matches white bg) */}
-      <div className="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white to-transparent pointer-events-none hidden md:block" />
+          )}
     </div>
   </div>
 )}
+
 
       {/* similar products section */}
       {/* <YouMayLike/> */}
